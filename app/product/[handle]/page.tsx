@@ -1,15 +1,14 @@
 import type { Metadata } from 'next';
 import { notFound } from 'next/navigation';
 
-import { GridTileImage } from 'components/grid/tile';
 import Footer from 'components/layout/footer';
 import { Gallery } from 'components/product/gallery';
 import { ProductProvider } from 'components/product/product-context';
 import { ProductDescription } from 'components/product/product-description';
+import { RelatedProducts } from 'components/product/related-products';
 import { HIDDEN_PRODUCT_TAG } from 'lib/constants';
 import { getProduct, getProductRecommendations } from 'lib/shopify';
 import { Image } from 'lib/shopify/types';
-import Link from 'next/link';
 import { Suspense } from 'react';
 
 export async function generateMetadata(props: {
@@ -80,16 +79,17 @@ export default async function ProductPage(props: { params: Promise<{ handle: str
           __html: JSON.stringify(productJsonLd)
         }}
       />
-      <div className="mx-auto max-w-screen-2xl px-4 py-8">
-        <div className="flex flex-col bg-white lg:flex-row lg:gap-12">
-          <div className="h-full w-full basis-full lg:basis-3/5">
+      <div className="bg-white">
+        <div className="mx-auto flex max-w-screen-2xl flex-col lg:flex-row lg:gap-0">
+          {/* Left Column - Images */}
+          <div className="scrollbar-hide w-full lg:sticky lg:top-0 lg:h-screen lg:w-1/2 lg:overflow-y-auto lg:pr-1">
             <Suspense
               fallback={
-                <div className="relative aspect-square h-full max-h-[600px] w-full overflow-hidden bg-neutral-100" />
+                <div className="relative aspect-[3/4] w-full bg-neutral-100" />
               }
             >
               <Gallery
-                images={product.images.slice(0, 5).map((image: Image) => ({
+                images={product.images.map((image: Image) => ({
                   src: image.url,
                   altText: image.altText
                 }))}
@@ -97,55 +97,27 @@ export default async function ProductPage(props: { params: Promise<{ handle: str
             </Suspense>
           </div>
 
-          <div className="basis-full lg:basis-2/5 lg:py-8">
+          {/* Right Column - Product Details */}
+          <div className="w-full px-6 py-8 lg:w-1/2 lg:px-12 lg:py-12">
             <Suspense fallback={null}>
               <ProductDescription product={product} />
             </Suspense>
           </div>
         </div>
-        <RelatedProducts id={product.id} />
+
+        {/* Related Products - Full Width */}
+        <div className="mx-auto max-w-screen-2xl px-6">
+          <Suspense fallback={null}>
+            <RelatedProductsWrapper id={product.id} />
+          </Suspense>
+        </div>
       </div>
       <Footer />
     </ProductProvider>
   );
 }
 
-async function RelatedProducts({ id }: { id: string }) {
+async function RelatedProductsWrapper({ id }: { id: string }) {
   const relatedProducts = await getProductRecommendations(id);
-
-  if (!relatedProducts.length) return null;
-
-  return (
-    <div className="border-t border-neutral-200 py-12">
-      <h2 className="mb-8 text-center text-2xl font-bold uppercase tracking-wider">
-        You May Also Like
-      </h2>
-      <ul className="flex w-full gap-4 overflow-x-auto pt-1">
-        {relatedProducts.map((product) => (
-          <li
-            key={product.handle}
-            className="aspect-square w-full flex-none min-[475px]:w-1/2 sm:w-1/3 md:w-1/4 lg:w-1/5"
-          >
-            <Link
-              className="relative h-full w-full"
-              href={`/product/${product.handle}`}
-              prefetch={true}
-            >
-              <GridTileImage
-                alt={product.title}
-                label={{
-                  title: product.title,
-                  amount: product.priceRange.maxVariantPrice.amount,
-                  currencyCode: product.priceRange.maxVariantPrice.currencyCode
-                }}
-                src={product.featuredImage?.url}
-                fill
-                sizes="(min-width: 1024px) 20vw, (min-width: 768px) 25vw, (min-width: 640px) 33vw, (min-width: 475px) 50vw, 100vw"
-              />
-            </Link>
-          </li>
-        ))}
-      </ul>
-    </div>
-  );
+  return <RelatedProducts products={relatedProducts} />;
 }

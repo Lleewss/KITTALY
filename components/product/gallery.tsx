@@ -1,92 +1,166 @@
 'use client';
 
-import { ArrowLeftIcon, ArrowRightIcon } from '@heroicons/react/24/outline';
-import { GridTileImage } from 'components/grid/tile';
-import { useProduct, useUpdateURL } from 'components/product/product-context';
 import Image from 'next/image';
+import { MouseEvent, useEffect, useState } from 'react';
 
 export function Gallery({ images }: { images: { src: string; altText: string }[] }) {
-  const { state, updateImage } = useProduct();
-  const updateURL = useUpdateURL();
-  const imageIndex = state.image ? parseInt(state.image) : 0;
+  const [hoveredIndex, setHoveredIndex] = useState<number | null>(null);
+  const [mousePosition, setMousePosition] = useState({ x: 50, y: 50 });
+  const [lightboxOpen, setLightboxOpen] = useState(false);
+  const [lightboxIndex, setLightboxIndex] = useState(0);
 
-  const nextImageIndex = imageIndex + 1 < images.length ? imageIndex + 1 : 0;
-  const previousImageIndex = imageIndex === 0 ? images.length - 1 : imageIndex - 1;
+  // Prevent body scroll when lightbox is open
+  useEffect(() => {
+    if (lightboxOpen) {
+      document.body.style.overflow = 'hidden';
+    } else {
+      document.body.style.overflow = 'unset';
+    }
+    
+    return () => {
+      document.body.style.overflow = 'unset';
+    };
+  }, [lightboxOpen]);
 
-  const buttonClassName =
-    'h-full px-6 transition-all ease-in-out hover:opacity-70 flex items-center justify-center text-black';
+  const handleMouseMove = (e: MouseEvent<HTMLDivElement>) => {
+    const rect = e.currentTarget.getBoundingClientRect();
+    const x = ((e.clientX - rect.left) / rect.width) * 100;
+    const y = ((e.clientY - rect.top) / rect.height) * 100;
+    setMousePosition({ x, y });
+  };
+
+  const openLightbox = (index: number) => {
+    setLightboxIndex(index);
+    setLightboxOpen(true);
+  };
+
+  const closeLightbox = () => {
+    setLightboxOpen(false);
+  };
+
+  const goToNext = () => {
+    setLightboxIndex((prev) => (prev + 1) % images.length);
+  };
+
+  const goToPrev = () => {
+    setLightboxIndex((prev) => (prev - 1 + images.length) % images.length);
+  };
 
   return (
-    <form>
-      <div className="relative aspect-square h-full max-h-[600px] w-full overflow-hidden bg-white">
-        {images[imageIndex] && (
-          <Image
-            className="h-full w-full object-cover"
-            fill
-            sizes="(min-width: 1024px) 60vw, 100vw"
-            alt={images[imageIndex]?.altText as string}
-            src={images[imageIndex]?.src as string}
-            priority={true}
-          />
-        )}
-
-        {images.length > 1 ? (
-          <div className="absolute bottom-[15%] flex w-full justify-center">
-            <div className="mx-auto flex h-12 items-center border border-neutral-300 bg-white/90 text-black backdrop-blur-sm">
-              <button
-                formAction={() => {
-                  const newState = updateImage(previousImageIndex.toString());
-                  updateURL(newState);
-                }}
-                aria-label="Previous product image"
-                className={buttonClassName}
-              >
-                <ArrowLeftIcon className="h-5" />
-              </button>
-              <div className="mx-1 h-6 w-px bg-neutral-300"></div>
-              <button
-                formAction={() => {
-                  const newState = updateImage(nextImageIndex.toString());
-                  updateURL(newState);
-                }}
-                aria-label="Next product image"
-                className={buttonClassName}
-              >
-                <ArrowRightIcon className="h-5" />
-              </button>
-            </div>
+    <>
+      <div className="grid grid-cols-2 gap-2">
+        {images.map((image, index) => (
+          <div
+            key={image.src}
+            className="group relative w-full cursor-zoom-in overflow-hidden bg-neutral-50"
+            style={{ aspectRatio: '3/4' }}
+            onMouseEnter={() => setHoveredIndex(index)}
+            onMouseLeave={() => setHoveredIndex(null)}
+            onMouseMove={handleMouseMove}
+            onClick={() => openLightbox(index)}
+          >
+            <Image
+              className="h-full w-full object-cover transition-transform duration-300 ease-out"
+              style={
+                hoveredIndex === index
+                  ? {
+                      transform: `scale(2)`,
+                      transformOrigin: `${mousePosition.x}% ${mousePosition.y}%`
+                    }
+                  : {}
+              }
+              fill
+              sizes="(min-width: 1024px) 25vw, 50vw"
+              alt={image.altText}
+              src={image.src}
+              priority={index < 4}
+            />
           </div>
-        ) : null}
+        ))}
       </div>
 
-      {images.length > 1 ? (
-        <ul className="my-12 flex items-center flex-wrap justify-center gap-2 overflow-auto py-1 lg:mb-0">
-          {images.map((image, index) => {
-            const isActive = index === imageIndex;
+      {/* Lightbox */}
+      {lightboxOpen && (
+        <div
+          className="fixed inset-0 z-50 flex items-center justify-center bg-black bg-opacity-95"
+          onClick={closeLightbox}
+        >
+          <button
+            onClick={(e) => {
+              e.stopPropagation();
+              closeLightbox();
+            }}
+            className="absolute right-4 top-4 z-10 text-white hover:text-neutral-300"
+            aria-label="Close"
+          >
+            <svg
+              className="h-8 w-8"
+              fill="none"
+              viewBox="0 0 24 24"
+              stroke="currentColor"
+              strokeWidth={2}
+            >
+              <path strokeLinecap="round" strokeLinejoin="round" d="M6 18L18 6M6 6l12 12" />
+            </svg>
+          </button>
 
-            return (
-              <li key={image.src} className="h-20 w-20">
-                <button
-                  formAction={() => {
-                    const newState = updateImage(index.toString());
-                    updateURL(newState);
-                  }}
-                  aria-label="Select product image"
-                  className="h-full w-full"
+          {images.length > 1 && (
+            <>
+              <button
+                onClick={(e) => {
+                  e.stopPropagation();
+                  goToPrev();
+                }}
+                className="absolute left-4 top-1/2 z-10 -translate-y-1/2 text-white hover:text-neutral-300"
+                aria-label="Previous"
+              >
+                <svg
+                  className="h-12 w-12"
+                  fill="none"
+                  viewBox="0 0 24 24"
+                  stroke="currentColor"
+                  strokeWidth={2}
                 >
-                  <GridTileImage
-                    alt={image.altText}
-                    src={image.src}
-                    width={80}
-                    height={80}
-                    active={isActive}
-                  />
-                </button>
-              </li>
-            );
-          })}
-        </ul>
-      ) : null}
-    </form>
+                  <path strokeLinecap="round" strokeLinejoin="round" d="M15 19l-7-7 7-7" />
+                </svg>
+              </button>
+
+              <button
+                onClick={(e) => {
+                  e.stopPropagation();
+                  goToNext();
+                }}
+                className="absolute right-4 top-1/2 z-10 -translate-y-1/2 text-white hover:text-neutral-300"
+                aria-label="Next"
+              >
+                <svg
+                  className="h-12 w-12"
+                  fill="none"
+                  viewBox="0 0 24 24"
+                  stroke="currentColor"
+                  strokeWidth={2}
+                >
+                  <path strokeLinecap="round" strokeLinejoin="round" d="M9 5l7 7-7 7" />
+                </svg>
+              </button>
+            </>
+          )}
+
+          <div
+            className="relative h-[90vh] w-[90vw]"
+            onClick={(e) => e.stopPropagation()}
+          >
+            <Image
+              className="h-full w-full object-contain"
+              fill
+              sizes="90vw"
+              alt={images[lightboxIndex]?.altText || ''}
+              src={images[lightboxIndex]?.src || ''}
+              priority
+            />
+          </div>
+        </div>
+      )}
+    </>
   );
 }

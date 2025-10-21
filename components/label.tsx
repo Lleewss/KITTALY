@@ -14,11 +14,9 @@ const Label = ({
 }) => {
   return (
     <div
-      className={clsx('absolute bottom-0 left-0 flex w-full px-4 pb-4 @container/label', {
-        'lg:px-20 lg:pb-[35%]': position === 'center'
-      })}
+      className={clsx('absolute bottom-0 left-0 flex w-full px-4 pb-4 @container/label')}
     >
-      <div className="flex w-full items-center justify-between bg-white/95 p-3 text-xs font-medium text-black backdrop-blur-sm">
+      <div className="flex w-full items-center justify-between bg-white p-3 text-xs font-medium text-black">
         <h3 className="line-clamp-2 grow pr-4 leading-tight tracking-wide">{title}</h3>
         <Price
           className="flex-none text-sm font-semibold"

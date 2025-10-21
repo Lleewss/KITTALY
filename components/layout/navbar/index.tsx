@@ -18,32 +18,35 @@ export async function Navbar() {
       <AnnouncementBanner />
       <nav className="sticky top-0 z-50 bg-white border-b border-neutral-200">
         <div className="mx-auto max-w-screen-2xl">
-          <div className="flex items-center justify-between px-4 py-4 lg:px-6">
-            {/* Mobile Menu */}
-            <div className="flex items-center md:hidden">
-              <Suspense fallback={null}>
-                <MobileMenu menu={menu} />
-              </Suspense>
+          <div className="relative flex items-center justify-between px-4 py-4 lg:px-6 md:grid md:grid-cols-3">
+            {/* Left Section */}
+            <div className="flex items-center gap-4">
+              {/* Mobile Menu */}
+              <div className="md:hidden">
+                <Suspense fallback={null}>
+                  <MobileMenu menu={menu} />
+                </Suspense>
+              </div>
+
+              {/* Left Menu - Desktop */}
+              {menu.length ? (
+                <div className="hidden md:flex md:items-center md:gap-8">
+                  {menu.slice(0, Math.ceil(menu.length / 2)).map((item: Menu) => (
+                    <Link
+                      key={item.title}
+                      href={item.path}
+                      prefetch={true}
+                      className="text-sm font-medium tracking-wide text-black transition-opacity hover:opacity-70"
+                    >
+                      {item.title}
+                    </Link>
+                  ))}
+                </div>
+              ) : null}
             </div>
 
-            {/* Left Menu - Desktop */}
-            {menu.length ? (
-              <div className="hidden md:flex md:items-center md:gap-8">
-                {menu.slice(0, Math.ceil(menu.length / 2)).map((item: Menu) => (
-                  <Link
-                    key={item.title}
-                    href={item.path}
-                    prefetch={true}
-                    className="text-sm font-medium tracking-wide text-black transition-opacity hover:opacity-70"
-                  >
-                    {item.title}
-                  </Link>
-                ))}
-              </div>
-            ) : null}
-
             {/* Center Logo */}
-            <div className="absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 md:relative md:left-auto md:top-auto md:translate-x-0 md:translate-y-0">
+            <div className="absolute left-1/2 -translate-x-1/2 md:static md:translate-x-0 md:flex md:justify-center">
               <Link
                 href="/"
                 prefetch={true}
@@ -56,8 +59,8 @@ export async function Navbar() {
               </Link>
             </div>
 
-            {/* Right Menu - Desktop */}
-            <div className="flex items-center gap-6">
+            {/* Right Section */}
+            <div className="flex items-center justify-end gap-6">
               {menu.length ? (
                 <div className="hidden md:flex md:items-center md:gap-8">
                   {menu.slice(Math.ceil(menu.length / 2)).map((item: Menu) => (
