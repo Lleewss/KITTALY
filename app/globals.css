@@ -1,0 +1,67 @@
+@import 'tailwindcss';
+
+@plugin "@tailwindcss/container-queries";
+@plugin "@tailwindcss/typography";
+
+@layer base {
+  *,
+  ::after,
+  ::before,
+  ::backdrop,
+  ::file-selector-button {
+    border-color: var(--color-gray-200, currentColor);
+  }
+
+  /* KITALLY Brand Colors - Calvin Klein Inspired */
+  :root {
+    --color-brand-black: #000000;
+    --color-brand-white: #FFFFFF;
+    --color-brand-red: #E10101;
+    --color-text-primary: #1A1919;
+    --color-text-secondary: #6B6B6B;
+    --color-border: #E5E5E5;
+  }
+
+  html {
+    color-scheme: light;
+  }
+
+  body {
+    background-color: var(--color-brand-white);
+    color: var(--color-text-primary);
+  }
+}
+
+@supports (font: -apple-system-body) and (-webkit-appearance: none) {
+  img[loading='lazy'] {
+    clip-path: inset(0.6px);
+  }
+}
+
+a,
+input,
+button {
+  @apply focus-visible:outline-hidden focus-visible:ring-2 focus-visible:ring-black focus-visible:ring-offset-2 focus-visible:ring-offset-white;
+}
+
+/* KITALLY Selection Style */
+::selection {
+  background-color: #000000;
+  color: #FFFFFF;
+}
+
+::-moz-selection {
+  background-color: #000000;
+  color: #FFFFFF;
+}
+
+/* Remove default animations for reduced motion */
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+}
