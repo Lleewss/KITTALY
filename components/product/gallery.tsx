@@ -9,10 +9,24 @@ export function Gallery({ images }: { images: { src: string; altText: string }[]
   const [lightboxOpen, setLightboxOpen] = useState(false);
   const [lightboxIndex, setLightboxIndex] = useState(0);
 
-  // Prevent body scroll when lightbox is open
+  // Prevent body scroll and handle ESC key when lightbox is open
   useEffect(() => {
     if (lightboxOpen) {
       document.body.style.overflow = 'hidden';
+      
+      // Handle ESC key
+      const handleEscape = (e: KeyboardEvent) => {
+        if (e.key === 'Escape') {
+          closeLightbox();
+        }
+      };
+      
+      document.addEventListener('keydown', handleEscape);
+      
+      return () => {
+        document.body.style.overflow = 'unset';
+        document.removeEventListener('keydown', handleEscape);
+      };
     } else {
       document.body.style.overflow = 'unset';
     }
@@ -82,7 +96,7 @@ export function Gallery({ images }: { images: { src: string; altText: string }[]
       {/* Lightbox */}
       {lightboxOpen && (
         <div
-          className="fixed inset-0 z-50 flex items-center justify-center bg-black bg-opacity-95"
+          className="fixed inset-0 z-[9999] flex items-center justify-center bg-black"
           onClick={closeLightbox}
         >
           <button
@@ -90,11 +104,12 @@ export function Gallery({ images }: { images: { src: string; altText: string }[]
               e.stopPropagation();
               closeLightbox();
             }}
-            className="absolute right-4 top-4 z-10 text-white hover:text-neutral-300"
-            aria-label="Close"
+            className="absolute right-4 top-4 z-10 flex h-10 w-10 items-center justify-center rounded-full bg-white/10 text-white backdrop-blur-sm transition-all hover:bg-white/20 hover:scale-110"
+            aria-label="Close (Press ESC)"
+            title="Close (Press ESC)"
           >
             <svg
-              className="h-8 w-8"
+              className="h-6 w-6"
               fill="none"
               viewBox="0 0 24 24"
               stroke="currentColor"
