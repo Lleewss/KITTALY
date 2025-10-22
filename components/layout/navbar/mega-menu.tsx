@@ -22,15 +22,26 @@ export default function MegaMenu({ menu }: MegaMenuProps) {
   const [hoveredSubMenu, setHoveredSubMenu] = useState<Menu | null>(null);
   const [collectionImages, setCollectionImages] = useState<CollectionImages>({});
   const [loadingImages, setLoadingImages] = useState<Set<string>>(new Set());
-  const [menuTop, setMenuTop] = useState(0);
-  const menuContainerRef = useRef<HTMLDivElement>(null);
+  const [navbarHeight, setNavbarHeight] = useState(0);
+  const menuRef = useRef<HTMLDivElement>(null);
   const timeoutRef = useRef<NodeJS.Timeout | null>(null);
 
   useEffect(() => {
-    if (menuContainerRef.current) {
-      const rect = menuContainerRef.current.getBoundingClientRect();
-      setMenuTop(rect.bottom);
-    }
+    const updateNavbarHeight = () => {
+      const nav = document.querySelector('nav');
+      if (nav) {
+        setNavbarHeight(nav.getBoundingClientRect().bottom);
+      }
+    };
+    
+    updateNavbarHeight();
+    window.addEventListener('scroll', updateNavbarHeight);
+    window.addEventListener('resize', updateNavbarHeight);
+    
+    return () => {
+      window.removeEventListener('scroll', updateNavbarHeight);
+      window.removeEventListener('resize', updateNavbarHeight);
+    };
   }, []);
 
   const fetchCollectionImage = async (path: string) => {
@@ -137,10 +148,20 @@ export default function MegaMenu({ menu }: MegaMenuProps) {
     };
   }, []);
 
+  const handleMenuClick = () => {
+    setActiveMenu(null);
+    setActiveSubMenu(null);
+    setHoveredSubMenu(null);
+    if (timeoutRef.current) {
+      clearTimeout(timeoutRef.current);
+      timeoutRef.current = null;
+    }
+  };
+
   return (
-    <>
-      <div ref={menuContainerRef} className="hidden md:flex md:items-center md:gap-8">
-        {menu.map((item: Menu) => (
+    <div ref={menuRef} className="relative">
+      <div className="hidden md:flex md:items-center md:gap-8">
+        {menu.slice(0, 3).map((item: Menu) => (
           <div
             key={item.title}
             className="relative group"
@@ -150,6 +171,7 @@ export default function MegaMenu({ menu }: MegaMenuProps) {
             <Link
               href={item.path}
               prefetch={true}
+              onClick={handleMenuClick}
               className={`text-sm font-medium tracking-wide transition-opacity hover:opacity-70 block py-2 relative inline-block ${
                 isSaleItem(item.title) ? 'text-[#E10101]' : 'text-black'
               }`}
@@ -161,19 +183,15 @@ export default function MegaMenu({ menu }: MegaMenuProps) {
                 }`}
               />
             </Link>
-            
-            {item.items && item.items.length > 0 && activeMenu === item.title && (
-              <div className="absolute left-0 right-0 h-4 -bottom-4 z-50" />
-            )}
           </div>
         ))}
       </div>
 
       {activeMenu && menu.find(m => m.title === activeMenu)?.items && (
         <div 
-          className="fixed left-0 right-0 z-40 hidden md:block mt-1"
+          className="fixed left-0 right-0 z-40 hidden md:block"
           style={{ 
-            top: `${menuTop}px`,
+            top: `${navbarHeight}px`
           }}
           onMouseEnter={handleMegaMenuEnter}
           onMouseLeave={handleMenuLeave}
@@ -193,6 +211,7 @@ export default function MegaMenu({ menu }: MegaMenuProps) {
                         <Link
                           href={subItem.path}
                           prefetch={true}
+                          onClick={handleMenuClick}
                           className={`block py-2 px-3 text-sm font-medium transition-all rounded-sm relative ${
                             activeSubMenu === subItem.title
                               ? 'bg-neutral-100'
@@ -238,6 +257,7 @@ export default function MegaMenu({ menu }: MegaMenuProps) {
                           <Link
                             href={subSubItem.path}
                             prefetch={true}
+                            onClick={handleMenuClick}
                             className={`block py-2 px-3 text-sm font-medium transition-all rounded-sm ${
                               isSaleItem(subSubItem.title)
                                 ? 'text-[#E10101]'
@@ -263,7 +283,7 @@ export default function MegaMenu({ menu }: MegaMenuProps) {
 
                 <div className="w-96 border-l border-neutral-200 flex-shrink-0 bg-white">
                   {hoveredSubMenu && collectionImages[hoveredSubMenu.path] ? (
-                    <Link href={hoveredSubMenu.path} className="block h-full max-h-[500px] group/image p-6">
+                    <Link href={hoveredSubMenu.path} onClick={handleMenuClick} className="block h-full max-h-[500px] group/image p-6">
                       <div className="relative h-full">
                         <img
                           src={collectionImages[hoveredSubMenu.path]}
@@ -288,6 +308,6 @@ export default function MegaMenu({ menu }: MegaMenuProps) {
           </div>
         </div>
       )}
-    </>
+    </div>
   );
 }

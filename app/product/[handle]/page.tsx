@@ -1,6 +1,7 @@
 import type { Metadata } from 'next';
 import { notFound } from 'next/navigation';
 
+import { CustomerGallery } from 'components/customer-gallery';
 import Footer from 'components/layout/footer';
 import { Gallery } from 'components/product/gallery';
 import { ProductProvider } from 'components/product/product-context';
@@ -104,6 +105,9 @@ export default async function ProductPage(props: { params: Promise<{ handle: str
             </Suspense>
           </div>
         </div>
+
+        {/* Customer Gallery */}
+        <CustomerGallery />
 
         {/* Related Products - Full Width */}
         <div className="mx-auto max-w-screen-2xl px-6">

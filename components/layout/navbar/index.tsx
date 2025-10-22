@@ -8,7 +8,7 @@ import MegaMenu from './mega-menu';
 import MobileMenu from './mobile-menu';
 import Search, { SearchSkeleton } from './search';
 
-const SITE_NAME = process.env.SITE_NAME || 'KITALLY';
+const SITE_NAME = process.env.SITE_NAME || 'KITTALY';
 
 export async function Navbar() {
   const menu = await getMenu('next-js-frontend-header-menu');
@@ -16,7 +16,7 @@ export async function Navbar() {
   return (
     <>
       <AnnouncementBanner />
-      <nav className="sticky top-0 z-50 bg-white border-b border-neutral-200" style={{ ['--navbar-height' as any]: '73px' }}>
+      <nav className="sticky top-0 z-50 bg-white border-b border-neutral-200">
         <div className="mx-auto max-w-screen-2xl">
           <div className="relative flex items-center px-4 py-4 lg:px-6">
             {/* Mobile Menu */}

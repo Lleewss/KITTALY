@@ -10,14 +10,17 @@ import { useCart } from './cart-context';
 
 function SubmitButton({
   availableForSale,
-  selectedVariantId
+  selectedVariantId,
+  onScrollToVariant
 }: {
   availableForSale: boolean;
   selectedVariantId: string | undefined;
+  onScrollToVariant?: () => void;
 }) {
   const buttonClasses =
     'relative flex w-full items-center justify-center bg-black p-4 text-sm font-medium uppercase tracking-wider text-white transition-opacity';
   const disabledClasses = 'cursor-not-allowed opacity-40';
+  const mobileClickableClasses = 'lg:cursor-not-allowed lg:opacity-40 hover:opacity-80';
 
   if (!availableForSale) {
     return (
@@ -30,9 +33,17 @@ function SubmitButton({
   if (!selectedVariantId) {
     return (
       <button
+        type="button"
         aria-label="Please select an option"
-        disabled
-        className={clsx(buttonClasses, disabledClasses)}
+        onClick={(e) => {
+          // On mobile, scroll to variant selector instead of being disabled
+          if (window.innerWidth < 1024 && onScrollToVariant) {
+            e.preventDefault();
+            onScrollToVariant();
+          }
+        }}
+        disabled={typeof window !== 'undefined' && window.innerWidth >= 1024}
+        className={clsx(buttonClasses, mobileClickableClasses)}
       >
         <div className="absolute left-0 ml-4">
           <PlusIcon className="h-5" />
@@ -55,7 +66,7 @@ function SubmitButton({
   );
 }
 
-export function AddToCart({ product }: { product: Product }) {
+export function AddToCart({ product, onScrollToVariant }: { product: Product; onScrollToVariant?: () => void }) {
   const { variants, availableForSale } = product;
   const { addCartItem } = useCart();
   const { state } = useProduct();
@@ -83,6 +94,7 @@ export function AddToCart({ product }: { product: Product }) {
       <SubmitButton
         availableForSale={availableForSale}
         selectedVariantId={selectedVariantId}
+        onScrollToVariant={onScrollToVariant}
       />
       <p aria-live="polite" className="sr-only" role="status">
         {message}

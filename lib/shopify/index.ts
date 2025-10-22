@@ -145,7 +145,7 @@ const reshapeCollection = (
 
   return {
     ...collection,
-    path: `/search/${collection.handle}`
+    path: `/${collection.handle}`
   };
 };
 
@@ -389,9 +389,10 @@ export async function getMenu(handle: string): Promise<Menu[]> {
         // If URL parsing fails, proceed with the original path
       }
       
-      // Transform paths
+      // Transform paths - strip /collections and /pages prefixes
       path = path
-        .replace('/collections', '/search')
+        .replace('/collections/', '/')
+        .replace('/collections', '/')
         .replace('/pages', '');
       
       return {

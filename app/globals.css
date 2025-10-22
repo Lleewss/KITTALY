@@ -92,6 +92,11 @@ button {
   cursor: zoom-in;
 }
 
+/* Custom zoom cursor - white circle with plus */
+.cursor-zoom-custom {
+  cursor: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="48" height="48" viewBox="0 0 48 48"><circle cx="24" cy="24" r="23" fill="white" stroke="black" stroke-width="1"/><line x1="24" y1="14" x2="24" y2="34" stroke="black" stroke-width="1.5"/><line x1="14" y1="24" x2="34" y2="24" stroke="black" stroke-width="1.5"/></svg>') 24 24, zoom-in;
+}
+
 ::-moz-selection {
   background-color: #000000;
   color: #FFFFFF;

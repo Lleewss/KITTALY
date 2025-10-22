@@ -1,5 +1,6 @@
 import { getCollectionProducts } from 'lib/shopify';
 import Link from 'next/link';
+import { CarouselControls } from './carousel-controls';
 import { GridTileImage } from './grid/tile';
 
 export async function Carousel() {
@@ -12,8 +13,8 @@ export async function Carousel() {
   const carouselProducts = [...products, ...products, ...products];
 
   return (
-    <div className="w-full overflow-x-auto pb-6 pt-1">
-      <ul className="flex animate-carousel gap-4">
+    <CarouselControls>
+      <ul className="flex gap-4">
         {carouselProducts.map((product, i) => (
           <li
             key={`${product.handle}${i}`}
@@ -35,6 +36,6 @@ export async function Carousel() {
           </li>
         ))}
       </ul>
-    </div>
+    </CarouselControls>
   );
 }

@@ -8,6 +8,7 @@ export function Gallery({ images }: { images: { src: string; altText: string }[]
   const [mousePosition, setMousePosition] = useState({ x: 50, y: 50 });
   const [lightboxOpen, setLightboxOpen] = useState(false);
   const [lightboxIndex, setLightboxIndex] = useState(0);
+  const [selectedMobileImage, setSelectedMobileImage] = useState(0);
 
   // Prevent body scroll and handle ESC key when lightbox is open
   useEffect(() => {
@@ -62,11 +63,56 @@ export function Gallery({ images }: { images: { src: string; altText: string }[]
 
   return (
     <>
-      <div className="grid grid-cols-2 gap-2">
+      {/* Mobile View - Single Image + Thumbnails */}
+      <div className="lg:hidden">
+        {/* Main Image */}
+        <div
+          className="relative w-full bg-neutral-50"
+          style={{ aspectRatio: '2/3' }}
+          onClick={() => openLightbox(selectedMobileImage)}
+        >
+          <Image
+            className="h-full w-full object-cover"
+            fill
+            sizes="100vw"
+            alt={images[selectedMobileImage]?.altText || ''}
+            src={images[selectedMobileImage]?.src || ''}
+            priority
+          />
+        </div>
+
+        {/* Thumbnails - No spacing */}
+        <div className="flex gap-1 overflow-x-auto scrollbar-hide">
+          {images.map((image, index) => (
+            <button
+              key={image.src}
+              onClick={() => setSelectedMobileImage(index)}
+              className={`relative flex-shrink-0 transition-opacity ${
+                selectedMobileImage === index ? 'opacity-100' : 'opacity-50'
+              }`}
+              style={{ 
+                width: '70px',
+                height: '90px'
+              }}
+            >
+              <Image
+                className="h-full w-full object-cover"
+                fill
+                sizes="70px"
+                alt={image.altText}
+                src={image.src}
+              />
+            </button>
+          ))}
+        </div>
+      </div>
+
+      {/* Desktop View - Grid */}
+      <div className="hidden lg:grid grid-cols-2 gap-2">
         {images.map((image, index) => (
           <div
             key={image.src}
-            className="group relative w-full cursor-zoom-in overflow-hidden bg-neutral-50"
+            className="group relative w-full cursor-zoom-custom overflow-hidden bg-neutral-50"
             style={{ aspectRatio: '3/4' }}
             onMouseEnter={() => setHoveredIndex(index)}
             onMouseLeave={() => setHoveredIndex(null)}
