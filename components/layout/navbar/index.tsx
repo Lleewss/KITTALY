@@ -55,9 +55,7 @@ export async function Navbar() {
                 </Suspense>
               </div>
               
-              <div className="hidden md:block">
-                <CartModal />
-              </div>
+              <CartModal />
             </div>
           </div>
         </div>

@@ -5,7 +5,7 @@ import Form from 'next/form';
 import { useSearchParams } from 'next/navigation';
 import { useState } from 'react';
 
-export default function Search() {
+export default function Search({ showText = false }: { showText?: boolean }) {
   const searchParams = useSearchParams();
   const [isOpen, setIsOpen] = useState(false);
 
@@ -14,10 +14,13 @@ export default function Search() {
       {/* Search Icon Button */}
       <button
         onClick={() => setIsOpen(true)}
-        className="text-black hover:opacity-70 transition-opacity cursor-pointer"
+        className={`text-black hover:opacity-70 transition-opacity cursor-pointer ${
+          showText ? 'flex items-center gap-2' : ''
+        }`}
         aria-label="Search"
       >
         <MagnifyingGlassIcon className="h-5 w-5" />
+        {showText && <span className="text-sm font-medium tracking-wide">Search for products</span>}
       </button>
 
       {/* Search Overlay */}

@@ -35,24 +35,38 @@ function MenuSearchIcon() {
 
 function MobileMenuItem({ item, onClose, level = 0 }: { item: Menu; onClose: () => void; level?: number }) {
   const [isExpanded, setIsExpanded] = useState(false);
+  const hasSubItems = item.items && item.items.length > 0;
+
+  const handleToggle = () => {
+    if (hasSubItems) {
+      setIsExpanded(!isExpanded);
+    }
+  };
 
   return (
     <li className={`${level > 0 ? 'pl-4' : ''}`}>
-      <div className="flex items-center justify-between py-2">
+      <div className="flex items-center justify-between py-2 cursor-pointer" onClick={handleToggle}>
         <Link
           href={item.path}
           prefetch={true}
-          onClick={onClose}
-          className={`flex-1 text-xl transition-colors hover:text-neutral-500 ${
+          onClick={(e) => {
+            e.stopPropagation();
+            onClose();
+          }}
+          className={`text-xl transition-colors hover:text-neutral-500 ${
             isSaleItem(item.title) ? 'text-[#E10101]' : 'text-black'
           }`}
         >
           {item.title}
         </Link>
-        {item.items && item.items.length > 0 && (
+        <div className="flex-1" onClick={handleToggle} />
+        {hasSubItems && (
           <button
-            onClick={() => setIsExpanded(!isExpanded)}
-            className="p-2"
+            onClick={(e) => {
+              e.stopPropagation();
+              handleToggle();
+            }}
+            className="p-2 flex-shrink-0"
             aria-label={isExpanded ? 'Collapse submenu' : 'Expand submenu'}
           >
             <ChevronRightIcon
@@ -61,9 +75,9 @@ function MobileMenuItem({ item, onClose, level = 0 }: { item: Menu; onClose: () 
           </button>
         )}
       </div>
-      {item.items && item.items.length > 0 && isExpanded && (
+      {hasSubItems && isExpanded && (
         <ul className="border-l border-neutral-200">
-          {item.items.map((subItem) => (
+          {item.items!.map((subItem) => (
             <MobileMenuItem key={subItem.title} item={subItem} onClose={onClose} level={level + 1} />
           ))}
         </ul>
@@ -136,7 +150,7 @@ export default function MobileMenu({ menu }: { menu: Menu[] }) {
 
                 <div className="mb-4 w-full">
                   <Suspense fallback={<SearchSkeleton />}>
-                    <Search />
+                    <Search showText={true} />
                   </Suspense>
                 </div>
                 {menu.length ? (
