@@ -34,34 +34,34 @@ export function HeroSection({
   return (
     <section className="relative h-[70vh] min-h-[500px] w-full overflow-hidden bg-neutral-100">
       {/* Desktop Image */}
-      <div className="hidden md:block">
+      <div className="relative hidden h-full w-full md:block">
         <Image
           src={image}
           alt={title}
           fill
           priority
           className="object-cover"
-          sizes="100vw"
+          sizes="(max-width: 768px) 0vw, 100vw"
           quality={90}
         />
       </div>
 
       {/* Mobile Image */}
-      <div className="block md:hidden">
+      <div className="relative block h-full w-full md:hidden">
         <Image
           src={mobileImage || image}
           alt={title}
           fill
           priority
           className="object-cover"
-          sizes="100vw"
+          sizes="(min-width: 768px) 0vw, 100vw"
           quality={90}
         />
       </div>
 
       {/* Overlay Content */}
-      <div className="absolute inset-0 flex items-center justify-center">
-        <div className={`z-10 flex w-full max-w-screen-xl flex-col gap-4 px-6 ${textAlignClass}`}>
+      <div className="absolute inset-0 z-10 flex items-center justify-center">
+        <div className={`flex w-full max-w-screen-xl flex-col gap-4 px-6 ${textAlignClass}`}>
           <h1 className={`text-4xl font-bold uppercase tracking-wider md:text-6xl lg:text-7xl ${colorClass}`}>
             {title}
           </h1>
@@ -74,7 +74,7 @@ export function HeroSection({
             <div className="mt-4">
               <Link
                 href={cta.href}
-                className={`inline-block border-2 px-8 py-3 text-sm font-medium uppercase tracking-wider transition-all hover:bg-white hover:text-black ${
+                className={`inline-block border-2 px-8 py-3 text-sm font-medium uppercase tracking-wider transition-colors duration-200 hover:bg-white hover:text-black ${
                   textColor === 'white'
                     ? 'border-white text-white'
                     : 'border-black text-black hover:bg-black hover:text-white'
@@ -89,7 +89,7 @@ export function HeroSection({
 
       {/* Optional Gradient Overlay for better text readability */}
       {textColor === 'white' && (
-        <div className="absolute inset-0 bg-gradient-to-b from-black/30 to-black/10" />
+        <div className="pointer-events-none absolute inset-0 bg-gradient-to-b from-black/30 to-black/10" />
       )}
     </section>
   );

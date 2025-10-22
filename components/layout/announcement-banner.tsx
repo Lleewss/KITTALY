@@ -11,7 +11,6 @@ const announcements = [
 
 export function AnnouncementBanner() {
   const [currentIndex, setCurrentIndex] = useState(0);
-  const [isVisible, setIsVisible] = useState(true);
 
   useEffect(() => {
     const timer = setInterval(() => {
@@ -20,8 +19,6 @@ export function AnnouncementBanner() {
 
     return () => clearInterval(timer);
   }, []);
-
-  if (!isVisible) return null;
 
   const handlePrevious = () => {
     setCurrentIndex((prev) => (prev - 1 + announcements.length) % announcements.length);
@@ -32,7 +29,7 @@ export function AnnouncementBanner() {
   };
 
   return (
-    <div className="relative bg-black text-white">
+    <div className="bg-black text-white">
       <div className="mx-auto flex items-center justify-between px-4 py-2.5 text-sm">
         <button
           onClick={handlePrevious}
@@ -59,16 +56,6 @@ export function AnnouncementBanner() {
           <ChevronRightIcon className="h-4 w-4" />
         </button>
       </div>
-
-      <button
-        onClick={() => setIsVisible(false)}
-        className="absolute right-2 top-1/2 -translate-y-1/2 p-1 hover:opacity-70 transition-opacity"
-        aria-label="Close announcement"
-      >
-        <svg className="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" />
-        </svg>
-      </button>
     </div>
   );
 }

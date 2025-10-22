@@ -1,6 +1,5 @@
 import { CartProvider } from 'components/cart/cart-context';
 import { Navbar } from 'components/layout/navbar';
-import { GeistSans } from 'geist/font/sans';
 import { getCart } from 'lib/shopify';
 import { baseUrl } from 'lib/utils';
 import { ReactNode } from 'react';
@@ -39,7 +38,7 @@ export default async function RootLayout({
   const cart = getCart();
 
   return (
-    <html lang="en" className={GeistSans.variable}>
+    <html lang="en">
       <body className="bg-white text-black antialiased">
         <CartProvider cartPromise={cart}>
           <Navbar />

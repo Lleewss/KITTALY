@@ -2,6 +2,8 @@ import { Carousel } from 'components/carousel';
 import { ThreeItemGrid } from 'components/grid/three-items';
 import { HeroSection } from 'components/hero-section';
 import Footer from 'components/layout/footer';
+import PromoBanner from 'components/promo-banner';
+import { getMenu } from 'lib/shopify';
 
 export const metadata = {
   description:
@@ -13,9 +15,18 @@ export const metadata = {
   }
 };
 
-export default function HomePage() {
+export default async function HomePage() {
+  const menu = await getMenu('next-js-frontend-header-menu');
+  const saleLink = menu[3]?.path || '/search';
+
   return (
     <>
+      {/* Promo Banner */}
+      <PromoBanner
+        buttonText="Shop Now"
+        buttonLink={saleLink}
+      />
+
       {/* Main Hero */}
       <HeroSection
         image="/images/hero/hero-1-desktop.webp"
