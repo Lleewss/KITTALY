@@ -1,5 +1,5 @@
-import type { Metadata } from 'next';
 import Footer from 'components/layout/footer';
+import type { Metadata } from 'next';
 
 export const metadata: Metadata = {
   title: 'Delivery Information - KITTALY',

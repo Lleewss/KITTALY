@@ -21,6 +21,7 @@ import {
   removeFromCartMutation
 } from './mutations/cart';
 import { getCartQuery } from './queries/cart';
+import { getArticleQuery, getBlogQuery } from './queries/blog';
 import {
   getCollectionProductsQuery,
   getCollectionQuery,
@@ -41,7 +42,10 @@ import {
   Menu,
   Page,
   Product,
+  Article,
   ShopifyAddToCartOperation,
+  ShopifyArticleOperation,
+  ShopifyBlogOperation,
   ShopifyCart,
   ShopifyCartOperation,
   ShopifyCollection,
@@ -492,6 +496,59 @@ export async function getProducts({
   });
 
   return reshapeProducts(removeEdgesAndNodes(res.body.data.products));
+}
+
+// This is called from `app/api/revalidate.ts` so providers can control revalidation logic.
+// Blog & Articles Functions
+export async function getBlog(handle: string = 'news'): Promise<Article[]> {
+  'use cache';
+  cacheTag(TAGS.collections);
+  cacheLife('days');
+
+  const res = await shopifyFetch<ShopifyBlogOperation>({
+    query: getBlogQuery,
+    variables: {
+      handle,
+      first: 100
+    }
+  });
+
+  if (!res.body.data.blog) {
+    return [];
+  }
+
+  return removeEdgesAndNodes(res.body.data.blog.articles).map((article) => ({
+    ...article,
+    author: article.authorV2
+  }));
+}
+
+export async function getArticle(
+  blogHandle: string = 'news',
+  articleHandle: string
+): Promise<Article | undefined> {
+  'use cache';
+  cacheTag(TAGS.collections);
+  cacheLife('days');
+
+  const res = await shopifyFetch<ShopifyArticleOperation>({
+    query: getArticleQuery,
+    variables: {
+      blogHandle,
+      articleHandle
+    }
+  });
+
+  if (!res.body.data.blog?.articleByHandle) {
+    return undefined;
+  }
+
+  const article = res.body.data.blog.articleByHandle;
+
+  return {
+    ...article,
+    author: article.authorV2
+  };
 }
 
 // This is called from `app/api/revalidate.ts` so providers can control revalidation logic.

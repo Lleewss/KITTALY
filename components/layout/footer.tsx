@@ -19,6 +19,7 @@ const footerLinks = {
   ],
   about: [
     { title: 'About KITTALY', href: '/about' },
+    { title: 'Articles', href: '/articles' },
     { title: 'Sustainability', href: '/sustainability' },
     { title: 'Careers', href: '/careers' },
     { title: 'Press', href: '/press' }

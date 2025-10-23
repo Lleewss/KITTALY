@@ -310,3 +310,102 @@ export type ShopifyProductsOperation = {
     sortKey?: string;
   };
 };
+
+// Blog & Article Types
+export type Article = {
+  id: string;
+  title: string;
+  handle: string;
+  content: string;
+  contentHtml: string;
+  excerpt?: string;
+  excerptHtml?: string;
+  publishedAt: string;
+  image?: {
+    url: string;
+    altText?: string;
+    width: number;
+    height: number;
+  };
+  author?: {
+    name: string;
+  };
+  tags: string[];
+  seo?: {
+    title?: string;
+    description?: string;
+  };
+};
+
+export type Blog = {
+  id: string;
+  handle: string;
+  title: string;
+  articles: {
+    edges: Array<{
+      node: Article;
+    }>;
+  };
+};
+
+export type ShopifyArticle = {
+  id: string;
+  title: string;
+  handle: string;
+  content: string;
+  contentHtml: string;
+  excerpt?: string;
+  excerptHtml?: string;
+  publishedAt: string;
+  image?: {
+    url: string;
+    altText?: string;
+    width: number;
+    height: number;
+  };
+  authorV2?: {
+    name: string;
+  };
+  tags: string[];
+  seo?: {
+    title?: string;
+    description?: string;
+  };
+};
+
+export type ShopifyBlog = {
+  id: string;
+  handle: string;
+  title: string;
+};
+
+export type ShopifyBlogOperation = {
+  data: {
+    blog: {
+      id: string;
+      handle: string;
+      title: string;
+      articles: {
+        edges: Array<{
+          node: ShopifyArticle;
+        }>;
+      };
+    };
+  };
+  variables: {
+    handle: string;
+    first?: number;
+  };
+};
+
+export type ShopifyArticleOperation = {
+  data: {
+    blog: {
+      articleByHandle?: ShopifyArticle;
+    };
+  };
+  variables: {
+    blogHandle: string;
+    articleHandle: string;
+  };
+};
