@@ -15,7 +15,8 @@ const footerLinks = {
     { title: 'FAQs', href: '/help/faqs' },
     { title: 'Delivery & Returns', href: '/help/delivery' },
     { title: 'Track Order', href: '/help/track-order' },
-    { title: 'Size Guide', href: '/help/size-guide' }
+    { title: 'Size Guide', href: '/help/size-guide' },
+    { title: 'Sitemap', href: '/sitemap-page' }
   ],
   about: [
     { title: 'About KITTALY', href: '/about' },
@@ -27,7 +28,8 @@ const footerLinks = {
   legal: [
     { title: 'Privacy Policy', href: '/legal/privacy' },
     { title: 'Terms & Conditions', href: '/legal/terms' },
-    { title: 'Cookie Policy', href: '/legal/cookies' }
+    { title: 'Cookie Policy', href: '/legal/cookies' },
+    { title: 'Sitemap', href: '/sitemap-page' }
   ]
 };
 
