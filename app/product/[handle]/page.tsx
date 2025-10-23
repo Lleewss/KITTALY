@@ -107,7 +107,39 @@ export default async function ProductPage(props: { params: Promise<{ handle: str
         </div>
 
         {/* Customer Gallery */}
-        <CustomerGallery />
+        <CustomerGallery reviews={(() => {
+          // Parse gallery metafields
+          const galleryReviews = [];
+          if (product.metafields) {
+            for (let i = 1; i <= 8; i++) {
+              const photoField = product.metafields.find((m: any) => m && m.key === `gallery_item_${i}_photo`);
+              const textField = product.metafields.find((m: any) => m && m.key === `gallery_item_${i}_text`);
+              
+              if (photoField && textField) {
+                const photo = photoField.type === 'file_reference' && photoField.reference?.image 
+                  ? photoField.reference.image.url 
+                  : null;
+                const text = textField.value;
+                
+                if (photo && text) {
+                  // Parse the multiline text (3 lines: comment, name, product)
+                  const lines = text.split('\n').map(line => line.trim()).filter(line => line);
+                  if (lines.length >= 3) {
+                    galleryReviews.push({
+                      id: `${i}`,
+                      image: photo,
+                      quote: lines[0] || '',
+                      customerName: lines[1] || '',
+                      productName: lines[2] || '',
+                      rating: 5
+                    });
+                  }
+                }
+              }
+            }
+          }
+          return galleryReviews;
+        })()} />
 
         {/* Related Products - Full Width */}
         <div className="mx-auto max-w-screen-2xl px-6">

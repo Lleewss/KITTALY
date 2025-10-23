@@ -68,11 +68,37 @@ export type Page = {
   seo?: SEO;
   createdAt: string;
   updatedAt: string;
+  metafields?: Array<{
+    key: string;
+    value: string;
+    type: string;
+    reference?: {
+      image?: {
+        url: string;
+        altText: string;
+        width: number;
+        height: number;
+      };
+    };
+  }>;
 };
 
 export type Product = Omit<ShopifyProduct, 'variants' | 'images'> & {
   variants: ProductVariant[];
   images: Image[];
+  metafields?: {
+    key: string;
+    value: string;
+    type: string;
+    reference?: {
+      image?: {
+        url: string;
+        altText: string | null;
+        width: number;
+        height: number;
+      };
+    };
+  }[];
 };
 
 export type ProductOption = {

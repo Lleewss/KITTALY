@@ -56,6 +56,38 @@ const productFragment = /* GraphQL */ `
     }
     tags
     updatedAt
+    metafields(identifiers: [
+      { namespace: "custom", key: "gallery_item_1_photo" }
+      { namespace: "custom", key: "gallery_item_1_text" }
+      { namespace: "custom", key: "gallery_item_2_photo" }
+      { namespace: "custom", key: "gallery_item_2_text" }
+      { namespace: "custom", key: "gallery_item_3_photo" }
+      { namespace: "custom", key: "gallery_item_3_text" }
+      { namespace: "custom", key: "gallery_item_4_photo" }
+      { namespace: "custom", key: "gallery_item_4_text" }
+      { namespace: "custom", key: "gallery_item_5_photo" }
+      { namespace: "custom", key: "gallery_item_5_text" }
+      { namespace: "custom", key: "gallery_item_6_photo" }
+      { namespace: "custom", key: "gallery_item_6_text" }
+      { namespace: "custom", key: "gallery_item_7_photo" }
+      { namespace: "custom", key: "gallery_item_7_text" }
+      { namespace: "custom", key: "gallery_item_8_photo" }
+      { namespace: "custom", key: "gallery_item_8_text" }
+    ]) {
+      key
+      value
+      type
+      reference {
+        ... on MediaImage {
+          image {
+            url
+            altText
+            width
+            height
+          }
+        }
+      }
+    }
   }
   ${imageFragment}
   ${seoFragment}

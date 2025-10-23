@@ -10,84 +10,11 @@ interface CustomerReview {
   rating: number;
   quote: string;
   productName: string;
-  productHandle: string;
 }
 
-// Mock data - replace with real data from your reviews system
-const customerReviews: CustomerReview[] = [
-  {
-    id: '1',
-    image: '/images/hero/hero-1-desktop.webp',
-    customerName: 'Sarah M.',
-    rating: 5,
-    quote: 'Absolutely love the quality and fit!',
-    productName: 'Classic Denim Jacket',
-    productHandle: 'classic-denim-jacket'
-  },
-  {
-    id: '2',
-    image: '/images/hero/hero-2-desktop.webp',
-    customerName: 'Jessica L.',
-    rating: 5,
-    quote: 'Perfect for everyday wear.',
-    productName: 'Essential White Tee',
-    productHandle: 'essential-white-tee'
-  },
-  {
-    id: '3',
-    image: '/images/hero/hero-1-desktop.webp',
-    customerName: 'Emily R.',
-    rating: 5,
-    quote: 'The fabric is so soft and comfortable!',
-    productName: 'Oversized Hoodie',
-    productHandle: 'oversized-hoodie'
-  },
-  {
-    id: '4',
-    image: '/images/hero/hero-2-desktop.webp',
-    customerName: 'Michael T.',
-    rating: 5,
-    quote: 'Great quality, exactly as described.',
-    productName: 'Slim Fit Chinos',
-    productHandle: 'slim-fit-chinos'
-  },
-  {
-    id: '5',
-    image: '/images/hero/hero-1-desktop.webp',
-    customerName: 'David K.',
-    rating: 5,
-    quote: 'Best purchase I\'ve made this year!',
-    productName: 'Leather Bomber Jacket',
-    productHandle: 'leather-bomber-jacket'
-  },
-  {
-    id: '6',
-    image: '/images/hero/hero-2-desktop.webp',
-    customerName: 'Amanda S.',
-    rating: 5,
-    quote: 'So many compliments on this piece!',
-    productName: 'Midi Skirt',
-    productHandle: 'midi-skirt'
-  },
-  {
-    id: '7',
-    image: '/images/hero/hero-1-desktop.webp',
-    customerName: 'James P.',
-    rating: 5,
-    quote: 'Fits perfectly and looks amazing!',
-    productName: 'Classic Trench Coat',
-    productHandle: 'classic-trench-coat'
-  },
-  {
-    id: '8',
-    image: '/images/hero/hero-2-desktop.webp',
-    customerName: 'Sophie T.',
-    rating: 5,
-    quote: 'Exceeded all my expectations!',
-    productName: 'Cashmere Sweater',
-    productHandle: 'cashmere-sweater'
-  }
-];
+interface CustomerGalleryProps {
+  reviews?: CustomerReview[];
+}
 
 function StarRating({ rating }: { rating: number }) {
   return (
@@ -147,7 +74,12 @@ function CustomerReviewCard({ review }: { review: CustomerReview }) {
   );
 }
 
-export function CustomerGallery() {
+export function CustomerGallery({ reviews }: CustomerGalleryProps) {
+  // If no reviews provided, don't render anything
+  if (!reviews || reviews.length === 0) {
+    return null;
+  }
+
   return (
     <section className="w-full bg-white py-12 md:py-16">
       <div className="mx-auto max-w-screen-2xl px-4 md:px-6">
@@ -164,7 +96,7 @@ export function CustomerGallery() {
         {/* Gallery Carousel */}
         <div className="overflow-x-auto scrollbar-hide pb-4">
           <div className="flex gap-4 w-max">
-            {customerReviews.map((review) => (
+            {reviews.map((review) => (
               <div key={review.id} className="w-[240px] md:w-[280px]">
                 <CustomerReviewCard review={review} />
               </div>

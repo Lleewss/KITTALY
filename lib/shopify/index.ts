@@ -411,6 +411,10 @@ export async function getMenu(handle: string): Promise<Menu[]> {
 }
 
 export async function getPage(handle: string): Promise<Page> {
+  'use cache';
+  cacheTag(TAGS.collections);
+  cacheLife('days');
+
   const res = await shopifyFetch<ShopifyPageOperation>({
     query: getPageQuery,
     variables: { handle }
@@ -420,6 +424,10 @@ export async function getPage(handle: string): Promise<Page> {
 }
 
 export async function getPages(): Promise<Page[]> {
+  'use cache';
+  cacheTag(TAGS.collections);
+  cacheLife('days');
+
   const res = await shopifyFetch<ShopifyPagesOperation>({
     query: getPagesQuery
   });

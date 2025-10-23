@@ -30,7 +30,7 @@ function DualHeroItem({ item }: { item: DualHeroItem }) {
             fill
             priority
             className="object-cover transition-transform duration-500 group-hover:scale-105"
-            sizes="50vw"
+            sizes="(max-width: 768px) 0vw, 50vw"
             quality={90}
           />
         </div>
@@ -43,7 +43,7 @@ function DualHeroItem({ item }: { item: DualHeroItem }) {
             fill
             priority
             className="object-cover transition-transform duration-500 group-hover:scale-105"
-            sizes="100vw"
+            sizes="(min-width: 769px) 0vw, 100vw"
             quality={90}
           />
         </div>
