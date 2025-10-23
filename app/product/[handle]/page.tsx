@@ -122,6 +122,5 @@ export default async function ProductPage(props: { params: Promise<{ handle: str
 }
 
 async function RelatedProductsWrapper({ id }: { id: string }) {
-  const relatedProducts = await getProductRecommendations(id);
-  return <RelatedProducts products={relatedProducts} />;
+  return <RelatedProducts id={id} />;
 }
