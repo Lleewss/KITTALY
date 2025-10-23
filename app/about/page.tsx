@@ -1,8 +1,8 @@
 import { Metadata } from 'next';
 
 export const metadata: Metadata = {
-  title: 'About Us | KITTALY',
-  description: 'Learn about KITTALY - our story, mission, and commitment to creating premium fashion essentials for self-expression.',
+  title: 'About Us | FLOELI',
+  description: 'Learn about FLOELI - our story, mission, and commitment to creating premium fashion essentials for self-expression.',
 };
 
 export default function AboutPage() {
@@ -14,7 +14,7 @@ export default function AboutPage() {
           <div className="relative flex h-full items-center justify-center text-center">
             <div className="px-4">
               <h1 className="text-4xl font-bold uppercase tracking-wider text-white md:text-5xl lg:text-6xl">
-                About KITTALY
+                About FLOELI
               </h1>
               <p className="mt-4 text-lg text-white/90 md:text-xl">
                 Your Canvas for Limitless Self-Expression
@@ -33,7 +33,7 @@ export default function AboutPage() {
                 </h2>
                 <div className="mt-6 space-y-4 text-base text-neutral-600">
                   <p>
-                    Founded with a vision to redefine modern fashion, KITTALY emerged from a simple belief: 
+                    Founded with a vision to redefine modern fashion, FLOELI emerged from a simple belief: 
                     clothing should be an extension of who you are, not a constraint on who you can become.
                   </p>
                   <p>
@@ -42,10 +42,9 @@ export default function AboutPage() {
                     We've grown by staying true to our core principles: exceptional craftsmanship, sustainable 
                     practices, and timeless design.
                   </p>
-                  <p>
-                    Today, KITTALY stands at the intersection of luxury and accessibility, offering pieces that 
-                    elevate everyday moments while remaining conscious of our impact on the planet and the people 
-                    who bring our vision to life.
+                                    <p>
+                    Today, FLOELI stands at the intersection of luxury and accessibility, offering pieces that 
+                    empower individuals to express themselves authentically.
                   </p>
                 </div>
               </div>
@@ -136,7 +135,7 @@ export default function AboutPage() {
                   Community
                 </h3>
                 <p className="mt-2 text-base text-neutral-600">
-                  KITTALY is more than a brand - it's a community of like-minded individuals who value 
+                  FLOELI is more than a brand - it's a community of like-minded individuals who value 
                   quality, sustainability, and self-expression.
                 </p>
               </div>
@@ -163,7 +162,7 @@ export default function AboutPage() {
               </h2>
               <p className="mt-6 text-base text-neutral-600">
                 Whether you're here for a single piece or building your entire wardrobe, we're honored 
-                to be part of your style journey. Thank you for choosing KITTALY.
+                to be part of your style journey. Thank you for choosing FLOELI.
               </p>
               <div className="mt-8 flex flex-col gap-4 sm:flex-row sm:justify-center">
                 <a

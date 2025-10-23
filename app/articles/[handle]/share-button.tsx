@@ -11,7 +11,7 @@ export default function ShareButton({ title, handle }: { title: string; handle: 
           })
           .catch(() => {});
       } else {
-        navigator.clipboard.writeText(`https://kittaly.com/articles/${handle}`);
+        navigator.clipboard.writeText(`https://floeli.com/articles/${handle}`);
         alert('Link copied to clipboard!');
       }
     }

@@ -38,7 +38,7 @@ export default function TrackOrderPage() {
                   </h3>
                   <p className="text-sm text-neutral-600">
                     Your tracking number was sent via email when your order was dispatched. 
-                    Check your inbox and spam folder for an email from KITTALY.
+                    Check your inbox and spam folder for an email from FLOELI.
                   </p>
                 </div>
 

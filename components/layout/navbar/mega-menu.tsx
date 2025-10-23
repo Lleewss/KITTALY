@@ -291,7 +291,7 @@ export default function MegaMenu({ menu }: MegaMenuProps) {
                           className="w-full h-full object-cover"
                         />
                         <div className="absolute bottom-0 left-0 right-0 bg-white p-6">
-                          <p className="text-xs text-neutral-500 uppercase tracking-wider mb-1">KITTALY</p>
+                          <p className="text-xs text-neutral-500 uppercase tracking-wider mb-1">FLOELI</p>
                           <p className="text-lg font-medium text-black relative inline-block">
                             {hoveredSubMenu.title}
                             <span className="absolute bottom-0 left-0 right-0 h-px bg-black transform origin-left transition-transform duration-200 scale-x-0 group-hover/image:scale-x-100" />

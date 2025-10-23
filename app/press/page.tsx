@@ -1,15 +1,15 @@
 import { Metadata } from 'next';
 
 export const metadata: Metadata = {
-  title: 'Press | KITTALY',
-  description: 'KITTALY press resources, media inquiries, and brand information for journalists and content creators.',
+  title: 'Press | FLOELI',
+  description: 'FLOELI press resources, media inquiries, and brand information for journalists and content creators.',
 };
 
 export default function PressPage() {
   const pressReleases = [
     {
       date: 'March 15, 2024',
-      title: 'KITTALY Announces Partnership with Global Recycling Initiative',
+      title: 'FLOELI Announces Partnership with Global Recycling Initiative',
       excerpt: 'New collaboration aims to recycle 1 million garments by 2025, setting industry standard for circular fashion.'
     },
     {
@@ -19,7 +19,7 @@ export default function PressPage() {
     },
     {
       date: 'January 10, 2024',
-      title: 'KITTALY Achieves B-Corp Certification',
+      title: 'FLOELI Achieves B-Corp Certification',
       excerpt: 'Milestone reflects commitment to transparency, ethics, and environmental responsibility.'
     },
     {
@@ -78,10 +78,10 @@ export default function PressPage() {
                     <p className="mt-2 text-sm text-neutral-600">Sarah Mitchell</p>
                     <p className="text-sm text-neutral-600">Head of Communications</p>
                     <a
-                      href="mailto:press@kittaly.com"
+                      href="mailto:press@floeli.com"
                       className="mt-3 inline-block text-sm font-medium text-black underline"
                     >
-                      press@kittaly.com
+                      press@floeli.com
                     </a>
                     <p className="mt-1 text-sm text-neutral-600">
                       +44 (0) 123 456 7891
@@ -95,10 +95,10 @@ export default function PressPage() {
                     <p className="mt-2 text-sm text-neutral-600">Alex Chen</p>
                     <p className="text-sm text-neutral-600">Partnerships Manager</p>
                     <a
-                      href="mailto:partnerships@kittaly.com"
+                      href="mailto:partnerships@floeli.com"
                       className="mt-3 inline-block text-sm font-medium text-black underline"
                     >
-                      partnerships@kittaly.com
+                      partnerships@floeli.com
                     </a>
                   </div>
                 </div>
@@ -163,7 +163,7 @@ export default function PressPage() {
                     {release.excerpt}
                   </p>
                   <a
-                    href={`mailto:press@kittaly.com?subject=Request: ${release.title}`}
+                    href={`mailto:press@floeli.com?subject=Request: ${release.title}`}
                     className="mt-4 inline-block text-sm font-medium text-black underline"
                   >
                     Request Full Release →
@@ -174,28 +174,28 @@ export default function PressPage() {
           </div>
         </section>
 
-        {/* About KITTALY */}
+        {/* About FLOELI */}
         <section className="border-b border-neutral-200 py-16 md:py-24">
           <div className="mx-auto max-w-screen-xl px-4 md:px-6">
             <div className="mx-auto max-w-3xl">
               <h2 className="text-2xl font-bold uppercase tracking-wider text-[#1D2022] md:text-3xl">
-                About KITTALY
+                About FLOELI
               </h2>
               <div className="mt-6 space-y-4 text-base text-neutral-600">
                 <p>
-                  KITTALY is a premium fashion brand committed to creating exceptional clothing while 
+                  FLOELI is a premium fashion brand committed to creating exceptional clothing while 
                   building a more sustainable and equitable fashion industry. Founded on the principle 
-                  that style and sustainability are not mutually exclusive, KITTALY offers timeless 
+                  that style and sustainability are not mutually exclusive, FLOELI offers timeless 
                   designs crafted from organic and recycled materials.
                 </p>
                 <p>
-                  With a focus on quality, transparency, and innovation, KITTALY has established itself 
+                  With a focus on quality, transparency, and innovation, FLOELI has established itself 
                   as a leader in conscious fashion. The brand's commitment to ethical production, 
                   carbon-neutral operations, and circular fashion practices has earned recognition from 
                   industry leaders and environmental organizations.
                 </p>
                 <p>
-                  KITTALY's collections are available online at kittaly.com and at select retail 
+                  FLOELI's collections are available online at floeli.com and at select retail 
                   partners worldwide.
                 </p>
               </div>
@@ -224,7 +224,7 @@ export default function PressPage() {
                   </div>
                   <div>
                     <dt className="font-medium text-black">Website:</dt>
-                    <dd className="text-neutral-600">kittaly.com</dd>
+                    <dd className="text-neutral-600">floeli.com</dd>
                   </div>
                   <div>
                     <dt className="font-medium text-black">Certifications:</dt>
@@ -271,12 +271,12 @@ export default function PressPage() {
                 Let's Collaborate
               </h2>
               <p className="mt-4 text-base text-neutral-600">
-                Interested in featuring KITTALY in your publication or partnering with us? 
+                Interested in featuring FLOELI in your publication or partnering with us? 
                 We'd love to hear from you.
               </p>
               <div className="mt-8">
                 <a
-                  href="mailto:press@kittaly.com"
+                  href="mailto:press@floeli.com"
                   className="inline-block border-2 border-black bg-black px-8 py-3 text-sm font-medium uppercase tracking-wider text-white transition-colors duration-200 hover:bg-white hover:text-black"
                 >
                   Get in Touch

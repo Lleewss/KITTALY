@@ -1,7 +1,7 @@
 import { Metadata } from 'next';
 
 export const metadata: Metadata = {
-  title: 'Delivery Information - KITTALY',
+  title: 'Delivery Information - FLOELI',
   description: 'Learn about our delivery options, shipping times, and international delivery services.',
 };
 

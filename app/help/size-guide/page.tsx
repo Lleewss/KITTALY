@@ -1,8 +1,8 @@
 import type { Metadata } from 'next';
 
 export const metadata: Metadata = {
-  title: 'Size Guide - KITTALY',
-  description: 'Find your perfect fit with our comprehensive size guide. Detailed measurements for all KITTALY products.',
+  title: 'Size Guide - FLOELI',
+  description: 'Find your perfect fit with our comprehensive size guide. Detailed measurements for all FLOELI products.',
 };
 
 export default function SizeGuidePage() {

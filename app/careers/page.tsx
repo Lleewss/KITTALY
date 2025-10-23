@@ -1,8 +1,8 @@
 import { Metadata } from 'next';
 
 export const metadata: Metadata = {
-  title: 'Careers | KITTALY',
-  description: 'Join the KITTALY team. Explore career opportunities and be part of building the future of sustainable fashion.',
+  title: 'Careers | FLOELI',
+  description: 'Join the FLOELI team. Explore career opportunities and be part of building the future of sustainable fashion.',
 };
 
 export default function CareersPage() {
@@ -51,7 +51,7 @@ export default function CareersPage() {
         <section className="border-b border-neutral-200 bg-white py-12 md:py-16">
           <div className="mx-auto max-w-screen-xl px-4 md:px-6">
             <h1 className="text-3xl font-bold uppercase tracking-wider text-[#1D2022] md:text-4xl">
-              Careers at KITTALY
+              Careers at FLOELI
             </h1>
             <p className="mt-3 text-base text-neutral-600">
               Join our team and help shape the future of sustainable fashion.
@@ -59,15 +59,15 @@ export default function CareersPage() {
           </div>
         </section>
 
-        {/* Why KITTALY */}
+        {/* Why FLOELI */}
         <section className="border-b border-neutral-200 py-16 md:py-24">
           <div className="mx-auto max-w-screen-xl px-4 md:px-6">
             <div className="mx-auto max-w-3xl">
               <h2 className="text-2xl font-bold uppercase tracking-wider text-[#1D2022] md:text-3xl">
-                Why Work at KITTALY?
+                Why Work at FLOELI?
               </h2>
               <p className="mt-6 text-base text-neutral-600">
-                At KITTALY, we're building more than just a fashion brand - we're creating a community 
+                At FLOELI, we're building more than just a fashion brand - we're creating a community 
                 of passionate individuals committed to making a positive impact on the industry and the 
                 planet. Join us and be part of something meaningful.
               </p>
@@ -138,7 +138,7 @@ export default function CareersPage() {
                   Product Discount
                 </h3>
                 <p className="mt-3 text-sm text-neutral-600">
-                  50% discount on all KITTALY products, plus exclusive access to new collections 
+                  50% discount on all FLOELI products, plus exclusive access to new collections 
                   before they launch.
                 </p>
               </div>
@@ -184,7 +184,7 @@ export default function CareersPage() {
                       </div>
                     </div>
                     <a
-                      href={`mailto:careers@kittaly.com?subject=Application for ${position.title}`}
+                      href={`mailto:careers@floeli.com?subject=Application for ${position.title}`}
                       className="inline-block border border-black bg-white px-6 py-2 text-center text-sm font-medium uppercase tracking-wider text-black transition-colors duration-200 hover:bg-black hover:text-white"
                     >
                       Apply Now
@@ -250,11 +250,11 @@ export default function CareersPage() {
               </h2>
               <p className="mt-4 text-base text-neutral-600">
                 We're always looking for talented people to join our team. Send us your CV and tell 
-                us how you'd like to contribute to KITTALY.
+                us how you'd like to contribute to FLOELI.
               </p>
               <div className="mt-8">
                 <a
-                  href="mailto:careers@kittaly.com?subject=General Application"
+                  href="mailto:careers@floeli.com?subject=General Application"
                   className="inline-block border-2 border-black bg-black px-8 py-3 text-sm font-medium uppercase tracking-wider text-white transition-colors duration-200 hover:bg-white hover:text-black"
                 >
                   Send General Application

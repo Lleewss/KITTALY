@@ -8,7 +8,7 @@ import MegaMenu from './mega-menu';
 import MobileMenu from './mobile-menu';
 import Search, { SearchSkeleton } from './search';
 
-const SITE_NAME = process.env.SITE_NAME || 'KITTALY';
+const SITE_NAME = process.env.SITE_NAME || 'FLOELI';
 
 export async function Navbar() {
   const menu = await getMenu('next-js-frontend-header-menu');

@@ -41,10 +41,10 @@ export default function CustomerServicePage() {
                     For general inquiries and support
                   </p>
                   <a
-                    href="mailto:support@kittaly.com"
+                    href="mailto:support@floeli.com"
                     className="text-sm font-medium text-black underline"
                   >
-                    support@kittaly.com
+                    support@floeli.com
                   </a>
                   <p className="mt-3 text-xs text-neutral-500">
                     We typically respond within 24 hours
@@ -100,7 +100,7 @@ export default function CustomerServicePage() {
                   </p>
                   <div className="flex gap-4">
                     <a
-                      href="https://instagram.com/kittaly"
+                      href="https://instagram.com/floeli"
                       target="_blank"
                       rel="noopener noreferrer"
                       className="text-black hover:text-neutral-600"
@@ -108,7 +108,7 @@ export default function CustomerServicePage() {
                       <span className="text-sm">Instagram</span>
                     </a>
                     <a
-                      href="https://facebook.com/kittaly"
+                      href="https://facebook.com/floeli"
                       target="_blank"
                       rel="noopener noreferrer"
                       className="text-black hover:text-neutral-600"
@@ -116,7 +116,7 @@ export default function CustomerServicePage() {
                       <span className="text-sm">Facebook</span>
                     </a>
                     <a
-                      href="https://twitter.com/kittaly"
+                      href="https://twitter.com/floeli"
                       target="_blank"
                       rel="noopener noreferrer"
                       className="text-black hover:text-neutral-600"

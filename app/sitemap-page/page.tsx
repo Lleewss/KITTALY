@@ -4,8 +4,8 @@ import Link from 'next/link';
 import LoadMoreSection from './load-more-section';
 
 export const metadata: Metadata = {
-  title: 'Sitemap | KITTALY',
-  description: 'Browse all pages and collections on KITTALY. Find what you\'re looking for quickly and easily.'
+  title: 'Sitemap | FLOELI',
+  description: 'Browse all pages and collections on FLOELI. Find what you\'re looking for quickly and easily.'
 };
 
 export default async function SitemapPage() {
@@ -75,7 +75,7 @@ export default async function SitemapPage() {
               Sitemap
             </h1>
             <p className="mt-4 max-w-2xl text-base text-neutral-600">
-              Navigate through all pages on KITTALY. Find collections, articles, help resources, and more.
+              Navigate through all pages on FLOELI. Find collections, articles, help resources, and more.
             </p>
           </div>
         </div>

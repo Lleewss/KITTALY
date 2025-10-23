@@ -13,7 +13,7 @@ type Props = {
 export default async function Image({ params }: Props) {
   const { handle } = await params;
   const article = await getArticle('news', handle);
-  const title = article?.title || 'KITTALY Articles';
+  const title = article?.title || 'FLOELI Articles';
 
   return await OpengraphImage({ title });
 }

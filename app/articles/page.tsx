@@ -4,9 +4,9 @@ import Image from 'next/image';
 import Link from 'next/link';
 
 export const metadata: Metadata = {
-  title: 'Articles | KITTALY',
+  title: 'Articles | FLOELI',
   description:
-    'Read the latest news, style guides, and stories from KITTALY. Discover fashion trends, sustainability insights, and more.'
+    'Read the latest news, style guides, and stories from FLOELI. Discover fashion trends, sustainability insights, and more.'
 };
 
 export default async function ArticlesPage() {
@@ -25,7 +25,7 @@ export default async function ArticlesPage() {
               Articles
             </h1>
             <p className="mt-3 text-base text-neutral-600">
-              Latest news, style guides, and stories from KITTALY
+              Latest news, style guides, and stories from FLOELI
             </p>
           </div>
         </section>
@@ -104,7 +104,7 @@ export default async function ArticlesPage() {
                 className="group border border-neutral-200 p-6 transition-colors hover:border-black"
               >
                 <h3 className="mb-2 text-lg font-bold uppercase tracking-wider text-[#1D2022]">
-                  About KITTALY
+                  About FLOELI
                 </h3>
                 <p className="mb-4 text-sm text-neutral-600">
                   Learn about our story, mission, and values

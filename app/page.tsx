@@ -9,10 +9,10 @@ import { getMenu } from 'lib/shopify';
 
 export const metadata = {
   description:
-    'KITTALY - Your canvas for limitless self-expression. Shop premium fashion essentials with 30-day free returns.',
+    'FLOELI - Your canvas for limitless self-expression. Shop premium fashion essentials with 30-day free returns.',
   openGraph: {
     type: 'website',
-    title: 'KITTALY - Premium Fashion Essentials',
+    title: 'FLOELI - Premium Fashion Essentials',
     description: 'Your canvas for limitless self-expression'
   }
 };

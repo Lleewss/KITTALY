@@ -1,4 +1,4 @@
-# Articles/Blog Setup Guide for KITTALY
+# Articles/Blog Setup Guide for FLOELI
 
 ## Overview
 The articles system pulls blog posts from Shopify's built-in blog functionality, specifically from a blog with the handle `news`. This guide will walk you through setting up and managing your blog content in Shopify.
@@ -82,7 +82,7 @@ Ensure your Storefront API has the following permissions:
 **Features:**
 - Featured article (most recent) with large display
 - "Discover More" section with links to:
-  - About KITTALY
+  - About FLOELI
   - Sustainability
   - Careers
   - Press
@@ -120,7 +120,7 @@ Ensure your Storefront API has the following permissions:
 ### Styling & Design
 
 **Brand Consistency:**
-- Uses KITTALY brand colors (#1D2022 black, neutrals)
+- Uses FLOELI brand colors (#1D2022 black, neutrals)
 - Uppercase tracking-wider for headings
 - Minimal, clean aesthetic
 - Consistent spacing and borders
@@ -164,7 +164,7 @@ Ensure your Storefront API has the following permissions:
 **Brand Stories:**
 - "Founder's Message: Our 2024 Vision"
 - "Customer Spotlight: Real Stories"
-- "A Day in the Life at KITTALY HQ"
+- "A Day in the Life at FLOELI HQ"
 
 **Product Features:**
 - "New Collection Launch: Spring/Summer 2024"
@@ -318,7 +318,7 @@ cacheLife('days');
 For technical issues or questions:
 - **Code Issues**: Check GitHub repository
 - **Shopify Setup**: Consult Shopify Help Center
-- **Design Questions**: Reference KITTALY brand guidelines
+- **Design Questions**: Reference FLOELI brand guidelines
 - **Content Strategy**: Review this guide's best practices
 
 ---

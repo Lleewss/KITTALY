@@ -58,7 +58,7 @@ export default function ContactForm() {
       {submitStatus === 'error' && (
         <div className="mb-6 border border-red-600 bg-red-50 p-4">
           <p className="text-sm text-red-800">
-            Something went wrong. Please try again or email us directly at support@kittaly.com
+            Something went wrong. Please try again or email us directly at support@floeli.com
           </p>
         </div>
       )}

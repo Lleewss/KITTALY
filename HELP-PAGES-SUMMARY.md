@@ -1,7 +1,7 @@
 # Help & Info Pages - Implementation Summary
 
 ## Overview
-Successfully created a comprehensive help/info section for the KITTALY e-commerce site, including 9 pages plus a newsletter component with Shopify integration.
+Successfully created a comprehensive help/info section for the FLOELI e-commerce site, including 9 pages plus a newsletter component with Shopify integration.
 
 ## Created Pages
 
@@ -67,7 +67,7 @@ Successfully created a comprehensive help/info section for the KITTALY e-commerc
     - Name, Email, Order Number (optional), Subject, Message
     - Success/error state handling
   - Alternative contact methods:
-    - Email: support@kittaly.com
+    - Email: support@floeli.com
     - Phone: +44 (0) 123 456 7890 with hours
     - Live Chat button
     - Social media links (Instagram, Facebook, Twitter)
@@ -110,7 +110,7 @@ Successfully created a comprehensive help/info section for the KITTALY e-commerc
 ### 8. **Careers** (`/careers`)
 - **Type**: Server Component
 - **Features**:
-  - "Why Work at KITTALY?" section
+  - "Why Work at FLOELI?" section
   - 6 benefits cards:
     - Competitive Salary
     - Health & Wellness
@@ -131,13 +131,13 @@ Successfully created a comprehensive help/info section for the KITTALY e-commerc
 - **Type**: Server Component
 - **Features**:
   - Media inquiries section with contacts:
-    - Press Contact: Sarah Mitchell (press@kittaly.com)
-    - Influencer Partnerships: Alex Chen (partnerships@kittaly.com)
+    - Press Contact: Sarah Mitchell (press@floeli.com)
+    - Influencer Partnerships: Alex Chen (partnerships@floeli.com)
   - Media Kit downloads (5 items):
     - Brand Guidelines, Logo Pack, Product Images, Founder Photos, Fact Sheet
     - Each with file size display
   - Recent press releases (4 releases with dates)
-  - About KITTALY section with quick facts:
+  - About FLOELI section with quick facts:
     - Founded: 2020
     - Headquarters: London, UK
     - Founder & CEO: Emma Thompson

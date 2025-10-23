@@ -7,7 +7,7 @@ import { ReactNode } from 'react';
 import { Toaster } from 'sonner';
 import './globals.css';
 
-const SITE_NAME = process.env.SITE_NAME || 'KITALLY';
+const SITE_NAME = process.env.SITE_NAME || 'FLOELI';
 
 export const metadata = {
   metadataBase: new URL(baseUrl),
@@ -19,13 +19,13 @@ export const metadata = {
     follow: true,
     index: true
   },
-  description: 'KITALLY - Premium fashion essentials. Your canvas for limitless self-expression. Shop the latest collection with 30-day free returns.',
-  keywords: ['fashion', 'clothing', 'premium', 'lifestyle', 'essentials', 'KITALLY'],
+  description: 'FLOELI - Premium fashion essentials. Your canvas for limitless self-expression. Shop the latest collection with 30-day free returns.',
+  keywords: ['fashion', 'clothing', 'premium', 'lifestyle', 'essentials', 'FLOELI'],
   openGraph: {
     type: 'website',
     locale: 'en_GB',
     siteName: SITE_NAME,
-    title: `${SITE_NAME} - Premium Fashion Essentials`,
+    title: 'FLOELI - Premium Fashion Essentials',
     description: 'Your canvas for limitless self-expression'
   }
 };

@@ -6,8 +6,8 @@ import Newsletter from 'components/newsletter';
 import { getMenu } from 'lib/shopify';
 import { Suspense } from 'react';
 
-const COMPANY_NAME = process.env.COMPANY_NAME || 'KITTALY';
-const SITE_NAME = process.env.SITE_NAME || 'KITTALY';
+const COMPANY_NAME = process.env.COMPANY_NAME || 'FLOELI';
+const SITE_NAME = process.env.SITE_NAME || 'FLOELI';
 
 const footerLinks = {
   help: [
@@ -19,7 +19,7 @@ const footerLinks = {
     { title: 'Sitemap', href: '/sitemap-page' }
   ],
   about: [
-    { title: 'About KITTALY', href: '/about' },
+    { title: 'About FLOELI', href: '/about' },
     { title: 'Articles', href: '/articles' },
     { title: 'Sustainability', href: '/sustainability' },
     { title: 'Careers', href: '/careers' },
@@ -38,7 +38,7 @@ export default async function Footer() {
   const copyrightDate = 2023 + (currentYear > 2023 ? `-${currentYear}` : '');
   const skeleton = 'w-full h-6 animate-pulse bg-neutral-100';
   const menu = await getMenu('next-js-frontend-footer-menu');
-  const copyrightName = COMPANY_NAME || SITE_NAME || 'KITTALY';
+  const copyrightName = COMPANY_NAME || SITE_NAME || 'FLOELI';
 
   return (
     <footer className="border-t border-neutral-200 bg-white text-sm">
@@ -83,7 +83,7 @@ export default async function Footer() {
               href="/classics"
               className="text-neutral-600 underline transition-colors hover:text-black"
             >
-              KITTALY Classics
+              FLOELI Classics
             </Link>
           </nav>
         </div>
@@ -91,18 +91,18 @@ export default async function Footer() {
         {/* Section 2: Brand Description - Left Aligned */}
         <div className="py-8">
           <div className="text-left">
-            <h3 className="mb-3 text-base font-medium text-black">KITTALY Fashion Collection</h3>
+            <h3 className="mb-3 text-base font-medium text-black">FLOELI Fashion Collection</h3>
             <div className="space-y-2 text-sm text-neutral-600">
               <p>
-                Discover the KITTALY fashion collection. Relaxed. Refined. Confident. Feel
-                effortlessly stylish in KITTALY apparel and accessories. Relax on the weekend in our
-                designer jeans and t-shirts. Make an impact in sophisticated KITTALY wear. Then
+                Discover the FLOELI fashion collection. Relaxed. Refined. Confident. Feel
+                effortlessly stylish in FLOELI apparel and accessories. Relax on the weekend in our
+                designer jeans and t-shirts. Make an impact in sophisticated FLOELI wear. Then
                 unwind in comfort with our premium essentials. Time to get active? Work out in style
-                with KITTALY sportswear.
+                with FLOELI sportswear.
               </p>
               <p>
-                The KITTALY collection features sustainable and breathable materials. Because we care
-                about you, and about the planet. KITTALY fashion. Express yourself, every day.
+                The FLOELI collection features sustainable and breathable materials. Because we care
+                about you, and about the planet. FLOELI fashion. Express yourself, every day.
               </p>
             </div>
           </div>

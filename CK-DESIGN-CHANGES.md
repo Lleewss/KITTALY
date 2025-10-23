@@ -88,9 +88,9 @@ Main product grid component used on collection pages.
 
 ## Brand Integrity
 
-While adopting CK's layout principles, KITTALY's brand identity is maintained through:
+While adopting CK's layout principles, FLOELI's brand identity is maintained through:
 - Using existing fonts (not Klein Web font)
-- Keeping KITTALY logo and hero sections
+- Keeping FLOELI logo and hero sections
 - Maintaining site structure and navigation
 - Adapting style, not copying directly
 

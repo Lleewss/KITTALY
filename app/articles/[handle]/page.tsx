@@ -17,13 +17,13 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
 
   if (!article) {
     return {
-      title: 'Article Not Found | KITTALY',
+      title: 'Article Not Found | FLOELI',
       description: 'The article you are looking for could not be found.'
     };
   }
 
   return {
-    title: article.seo?.title || `${article.title} | KITTALY`,
+    title: article.seo?.title || `${article.title} | FLOELI`,
     description: article.seo?.description || article.excerpt || article.title,
     openGraph: article.image
       ? {
@@ -166,7 +166,7 @@ export default async function ArticlePage({ params }: Props) {
               </p>
               <div className="flex gap-4">
                 <a
-                  href={`https://twitter.com/intent/tweet?text=${encodeURIComponent(article.title)}&url=${encodeURIComponent(`https://kittaly.com/articles/${article.handle}`)}`}
+                  href={`https://twitter.com/intent/tweet?text=${encodeURIComponent(article.title)}&url=${encodeURIComponent(`https://floeli.com/articles/${article.handle}`)}`}
                   target="_blank"
                   rel="noopener noreferrer"
                   className="text-neutral-600 transition-colors hover:text-black"
@@ -177,7 +177,7 @@ export default async function ArticlePage({ params }: Props) {
                   </svg>
                 </a>
                 <a
-                  href={`https://www.facebook.com/sharer/sharer.php?u=${encodeURIComponent(`https://kittaly.com/articles/${article.handle}`)}`}
+                  href={`https://www.facebook.com/sharer/sharer.php?u=${encodeURIComponent(`https://floeli.com/articles/${article.handle}`)}`}
                   target="_blank"
                   rel="noopener noreferrer"
                   className="text-neutral-600 transition-colors hover:text-black"

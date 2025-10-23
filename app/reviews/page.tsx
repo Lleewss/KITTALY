@@ -6,10 +6,10 @@ import { DEFAULT_REVIEWS } from 'lib/default-reviews';
 import { getPage } from 'lib/shopify';
 
 export const metadata: Metadata = {
-  title: 'Customer Reviews - KITTALY',
-  description: 'Read what our customers are saying about KITTALY. Real reviews from real people.',
+  title: 'Customer Reviews - FLOELI',
+  description: 'Read what our customers are saying about FLOELI. Real reviews from real people.',
   openGraph: {
-    title: 'Customer Reviews - KITTALY',
+    title: 'Customer Reviews - FLOELI',
     description: 'Real reviews from real people.'
   }
 };
@@ -131,7 +131,7 @@ export default async function ReviewsPage() {
                 Customer Reviews
               </h1>
               <p className="mt-4 text-base text-neutral-600 md:text-lg">
-                Real people, real style. See how our customers are wearing KITTALY.
+                Real people, real style. See how our customers are wearing FLOELI.
               </p>
               
               {/* Stats */}
@@ -186,7 +186,7 @@ export default async function ReviewsPage() {
                 Share Your Style
               </h2>
               <p className="mt-3 text-sm text-neutral-600 md:text-base">
-                Tag us @kittaly on Instagram to be featured in our customer gallery
+                Tag us @floeli on Instagram to be featured in our customer gallery
               </p>
               <div className="mt-8">
                 <Link

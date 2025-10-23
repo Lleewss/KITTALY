@@ -1,8 +1,8 @@
 import { Metadata } from 'next';
 
 export const metadata: Metadata = {
-  title: 'Sustainability | KITTALY',
-  description: 'Discover KITTALY\'s commitment to sustainable fashion, ethical production, and environmental responsibility.',
+  title: 'Sustainability | FLOELI',
+  description: 'Discover FLOELI\'s commitment to sustainable fashion, ethical production, and environmental responsibility.',
 };
 
 export default function SustainabilityPage() {
@@ -29,7 +29,7 @@ export default function SustainabilityPage() {
               </h2>
               <div className="mt-6 space-y-4 text-base text-neutral-600">
                 <p>
-                  At KITTALY, sustainability isn't a marketing term - it's a fundamental part of how we 
+                  At FLOELI, sustainability isn't a marketing term - it's a fundamental part of how we 
                   operate. We recognize that the fashion industry has a significant environmental impact, 
                   and we're committed to being part of the solution.
                 </p>
@@ -128,7 +128,7 @@ export default function SustainabilityPage() {
                 </h3>
                 <p className="mt-3 text-sm text-neutral-600">
                   Our take-back program allows customers to return worn items for recycling. We also 
-                  offer repair services to extend the life of your KITTALY pieces.
+                  offer repair services to extend the life of your FLOELI pieces.
                 </p>
               </div>
 

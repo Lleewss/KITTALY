@@ -90,7 +90,7 @@ const faqData: FAQCategory[] = [
         answer: 'Popular items are often restocked. Sign up for restock notifications on the product page to be alerted when an item returns to stock.'
       },
       {
-        question: 'How do I care for my KITTALY items?',
+        question: 'How do I care for my FLOELI items?',
         answer: 'Care instructions are included on the label of each item. Generally, we recommend cold water washing, line drying, and avoiding harsh chemicals to extend the life of your garments.'
       }
     ]
