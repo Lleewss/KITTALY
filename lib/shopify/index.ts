@@ -1,3 +1,5 @@
+import 'server-only';
+
 import {
   HIDDEN_PRODUCT_TAG,
   SHOPIFY_GRAPHQL_API_ENDPOINT,

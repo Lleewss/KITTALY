@@ -2,6 +2,7 @@ import Link from 'next/link';
 
 import FooterMenu from 'components/layout/footer-menu';
 import LogoSquare from 'components/logo-square';
+import Newsletter from 'components/newsletter';
 import { getMenu } from 'lib/shopify';
 import { Suspense } from 'react';
 
@@ -38,6 +39,9 @@ export default async function Footer() {
 
   return (
     <footer className="border-t border-neutral-200 bg-white text-sm">
+      {/* Newsletter Section */}
+      <Newsletter />
+      
       <div className="mx-auto max-w-screen-2xl px-6 py-12 lg:px-8">
         {/* Section 1: Product Categories - Centered with Underline */}
         <div className="pb-8">
