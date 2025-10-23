@@ -1,16 +1,21 @@
-import { GridTileImage } from 'components/grid/tile';
 import { Product } from 'lib/shopify/types';
-import Link from 'next/link';
+import { RelatedProductsClient } from './related-products-client';
 
 export async function RelatedProducts({ id }: { id: string }) {
+  // Fetch related products
   const relatedProductsQuery = `
     query getProductRecommendations($productId: ID!) {
       productRecommendations(productId: $productId) {
         id
-        title
         handle
+        title
+        availableForSale
         priceRange {
           maxVariantPrice {
+            amount
+            currencyCode
+          }
+          minVariantPrice {
             amount
             currencyCode
           }
@@ -20,6 +25,23 @@ export async function RelatedProducts({ id }: { id: string }) {
           altText
           width
           height
+        }
+        variants(first: 250) {
+          edges {
+            node {
+              id
+              title
+              availableForSale
+              selectedOptions {
+                name
+                value
+              }
+              price {
+                amount
+                currencyCode
+              }
+            }
+          }
         }
       }
     }
@@ -47,46 +69,24 @@ export async function RelatedProducts({ id }: { id: string }) {
   }
 
   const { data } = await response.json();
-  const relatedProducts: Product[] = data.productRecommendations;
+  const recommendations = data?.productRecommendations || [];
+  
+  // Transform Shopify response to Product type
+  const products: Product[] = recommendations.map((rec: any) => ({
+    ...rec,
+    variants: rec.variants.edges.map((edge: any) => edge.node)
+  }));
 
-  if (!relatedProducts || relatedProducts.length === 0) return null;
+  if (!products.length) return null;
 
   return (
-    <div className="pb-8">
-      <h2 className="mb-6 text-2xl font-normal text-[#1D2022]">You May Also Like</h2>
-      <div className="grid grid-cols-2 gap-x-4 gap-y-8 overflow-x-auto md:grid-cols-4">
-        {relatedProducts.map((product) => (
-          <Link
-            key={product.handle}
-            className="group relative block"
-            href={`/product/${product.handle}`}
-          >
-            <div className="relative aspect-[3/4] w-full overflow-hidden bg-neutral-50">
-              <GridTileImage
-                alt={product.title}
-                label={{
-                  title: product.title,
-                  amount: product.priceRange.maxVariantPrice.amount,
-                  currencyCode: product.priceRange.maxVariantPrice.currencyCode
-                }}
-                src={product.featuredImage?.url}
-                fill
-                sizes="(min-width: 768px) 25vw, 50vw"
-                className="object-cover transition-opacity duration-200 group-hover:opacity-90"
-              />
-            </div>
-            <div className="mt-2 space-y-1">
-              <h3 className="text-sm font-normal text-[#1D2022] line-clamp-2 leading-tight">
-                {product.title}
-              </h3>
-              <p className="text-sm font-normal text-[#1D2022]">
-                {product.priceRange.maxVariantPrice.currencyCode}{' '}
-                {product.priceRange.maxVariantPrice.amount}
-              </p>
-            </div>
-          </Link>
-        ))}
+    <section className="py-12">
+      <div className="px-4">
+        <h2 className="mb-8 text-2xl font-medium uppercase tracking-wider">
+          You May Also Like
+        </h2>
+        <RelatedProductsClient products={products} />
       </div>
-    </div>
+    </section>
   );
 }

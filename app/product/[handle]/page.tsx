@@ -8,7 +8,7 @@ import { ProductProvider } from 'components/product/product-context';
 import { ProductDescription } from 'components/product/product-description';
 import { RelatedProducts } from 'components/product/related-products';
 import { HIDDEN_PRODUCT_TAG } from 'lib/constants';
-import { getProduct, getProductRecommendations } from 'lib/shopify';
+import { getProduct } from 'lib/shopify';
 import { Image } from 'lib/shopify/types';
 import { Suspense } from 'react';
 

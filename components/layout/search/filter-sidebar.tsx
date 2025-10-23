@@ -227,7 +227,7 @@ export default function FilterSidebar({ products, isMobile = false, onClose }: F
         <div className="mb-6">
           <button
             onClick={handleClearFilters}
-            className="w-full py-2 px-4 text-sm border border-black bg-white text-black hover:bg-black hover:text-white transition-colors"
+            className="w-full py-2.5 px-4 text-sm font-medium border border-black bg-white text-black hover:bg-black hover:text-white transition-all duration-200 uppercase tracking-wider"
           >
             Clear All Filters
           </button>
