@@ -1,4 +1,4 @@
-import { getCollections, getPages, getProducts, getBlog } from 'lib/shopify';
+import { getBlog, getCollections, getPages, getProducts } from 'lib/shopify';
 import { baseUrl, validateEnvironmentVariables } from 'lib/utils';
 import { MetadataRoute } from 'next';
 

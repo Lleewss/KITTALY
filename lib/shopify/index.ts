@@ -20,8 +20,8 @@ import {
   editCartItemsMutation,
   removeFromCartMutation
 } from './mutations/cart';
-import { getCartQuery } from './queries/cart';
 import { getArticleQuery, getBlogQuery } from './queries/blog';
+import { getCartQuery } from './queries/cart';
 import {
   getCollectionProductsQuery,
   getCollectionQuery,
@@ -35,6 +35,7 @@ import {
   getProductsQuery
 } from './queries/product';
 import {
+  Article,
   Cart,
   Collection,
   Connection,
@@ -42,7 +43,6 @@ import {
   Menu,
   Page,
   Product,
-  Article,
   ShopifyAddToCartOperation,
   ShopifyArticleOperation,
   ShopifyBlogOperation,
