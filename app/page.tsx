@@ -5,6 +5,7 @@ import { ThreeItemGrid } from 'components/grid/three-items';
 import { HeroSection } from 'components/hero-section';
 import Footer from 'components/layout/footer';
 import PromoBanner from 'components/promo-banner';
+import { DEFAULT_REVIEWS } from 'lib/default-reviews';
 import { getMenu } from 'lib/shopify';
 
 export const metadata = {
@@ -77,72 +78,7 @@ export default async function HomePage() {
       </section>
 
       {/* Customer Gallery */}
-      <CustomerGallery reviews={[
-        {
-          id: '1',
-          image: '/images/hero/hero-1-desktop.webp',
-          customerName: 'Sarah M.',
-          rating: 5,
-          quote: 'Absolutely love the quality and fit!',
-          productName: 'Classic Denim Jacket'
-        },
-        {
-          id: '2',
-          image: '/images/hero/hero-2-desktop.webp',
-          customerName: 'Jessica L.',
-          rating: 5,
-          quote: 'Perfect for everyday wear.',
-          productName: 'Essential White Tee'
-        },
-        {
-          id: '3',
-          image: '/images/hero/hero-1-desktop.webp',
-          customerName: 'Emily R.',
-          rating: 5,
-          quote: 'The fabric is so soft and comfortable!',
-          productName: 'Oversized Hoodie'
-        },
-        {
-          id: '4',
-          image: '/images/hero/hero-2-desktop.webp',
-          customerName: 'Michael T.',
-          rating: 5,
-          quote: 'Great quality, exactly as described.',
-          productName: 'Slim Fit Chinos'
-        },
-        {
-          id: '5',
-          image: '/images/hero/hero-1-desktop.webp',
-          customerName: 'David K.',
-          rating: 5,
-          quote: 'Best purchase I\'ve made this year!',
-          productName: 'Leather Bomber Jacket'
-        },
-        {
-          id: '6',
-          image: '/images/hero/hero-2-desktop.webp',
-          customerName: 'Amanda S.',
-          rating: 5,
-          quote: 'So many compliments on this piece!',
-          productName: 'Midi Skirt'
-        },
-        {
-          id: '7',
-          image: '/images/hero/hero-1-desktop.webp',
-          customerName: 'James P.',
-          rating: 5,
-          quote: 'Fits perfectly and looks amazing!',
-          productName: 'Classic Trench Coat'
-        },
-        {
-          id: '8',
-          image: '/images/hero/hero-2-desktop.webp',
-          customerName: 'Sophie T.',
-          rating: 5,
-          quote: 'Exceeded all my expectations!',
-          productName: 'Cashmere Sweater'
-        }
-      ]} />
+      <CustomerGallery reviews={DEFAULT_REVIEWS} />
 
       {/* Product Carousel */}
       <section className="mx-auto max-w-screen-2xl px-4 py-12 md:py-16">

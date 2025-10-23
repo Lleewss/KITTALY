@@ -11,6 +11,7 @@ import TagFilters from 'components/layout/search/tag-filters';
 import PromoBanner from 'components/promo-banner';
 import Prose from 'components/prose';
 import { defaultSort, sorting } from 'lib/constants';
+import { DEFAULT_REVIEWS } from 'lib/default-reviews';
 import { getCollection, getCollectionProducts, getMenu, getPage } from 'lib/shopify';
 import { notFound } from 'next/navigation';
 
@@ -184,8 +185,8 @@ export default async function Page(props: {
         )}
 
         {/* Customer Gallery */}
-        {getMetafield('gallery_item_1_photo') && (() => {
-          // Parse gallery items
+        {(() => {
+          // Parse gallery items from metafields
           const galleryReviews = [];
           for (let i = 1; i <= 8; i++) {
             const photo = getMetafield(`gallery_item_${i}_photo`);
@@ -196,18 +197,24 @@ export default async function Page(props: {
               const lines = text.split('\n').map(line => line.trim()).filter(line => line);
               if (lines.length >= 3) {
                 galleryReviews.push({
-                  id: `${i}`,
+                  id: `page-${i}`,
                   image: photo,
-                  quote: lines[0] || '', // First line: comment
-                  customerName: lines[1] || '', // Second line: name
-                  productName: lines[2] || '', // Third line: product
-                  rating: 5 // Hardcoded 5 stars
+                  quote: lines[0] || '',
+                  customerName: lines[1] || '',
+                  productName: lines[2] || '',
+                  rating: 5
                 });
               }
             }
           }
           
-          return galleryReviews.length > 0 ? <CustomerGallery reviews={galleryReviews} /> : null;
+          // Fill remaining slots with default reviews (up to 8 total)
+          const remainingCount = 8 - galleryReviews.length;
+          if (remainingCount > 0) {
+            galleryReviews.push(...DEFAULT_REVIEWS.slice(0, remainingCount));
+          }
+          
+          return <CustomerGallery reviews={galleryReviews} />;
         })()}
 
         {/* Product Carousel - Latest Arrivals */}

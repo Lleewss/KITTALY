@@ -8,6 +8,7 @@ import { ProductProvider } from 'components/product/product-context';
 import { ProductDescription } from 'components/product/product-description';
 import { RelatedProducts } from 'components/product/related-products';
 import { HIDDEN_PRODUCT_TAG } from 'lib/constants';
+import { DEFAULT_REVIEWS } from 'lib/default-reviews';
 import { getProduct } from 'lib/shopify';
 import { Image } from 'lib/shopify/types';
 import { Suspense } from 'react';
@@ -126,7 +127,7 @@ export default async function ProductPage(props: { params: Promise<{ handle: str
                   const lines = text.split('\n').map(line => line.trim()).filter(line => line);
                   if (lines.length >= 3) {
                     galleryReviews.push({
-                      id: `${i}`,
+                      id: `product-${i}`,
                       image: photo,
                       quote: lines[0] || '',
                       customerName: lines[1] || '',
@@ -138,6 +139,13 @@ export default async function ProductPage(props: { params: Promise<{ handle: str
               }
             }
           }
+          
+          // Fill remaining slots with default reviews (up to 8 total)
+          const remainingCount = 8 - galleryReviews.length;
+          if (remainingCount > 0) {
+            galleryReviews.push(...DEFAULT_REVIEWS.slice(0, remainingCount));
+          }
+          
           return galleryReviews;
         })()} />
 
