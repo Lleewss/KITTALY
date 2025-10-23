@@ -1,4 +1,3 @@
-import Footer from 'components/layout/footer';
 import { getArticle, getBlog } from 'lib/shopify';
 import { Metadata } from 'next';
 import Image from 'next/image';
@@ -56,8 +55,7 @@ export default async function ArticlePage({ params }: Props) {
     .slice(0, 3);
 
   return (
-    <>
-      <div className="min-h-screen bg-white">
+    <div className="min-h-screen bg-white">
         {/* Breadcrumb */}
         <nav className="border-b border-neutral-200 bg-white py-4">
           <div className="mx-auto max-w-screen-xl px-4 md:px-6">
@@ -254,7 +252,5 @@ export default async function ArticlePage({ params }: Props) {
           </section>
         )}
       </div>
-      <Footer />
-    </>
   );
 }

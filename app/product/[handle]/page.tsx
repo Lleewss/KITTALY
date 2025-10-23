@@ -2,7 +2,6 @@ import type { Metadata } from 'next';
 import { notFound } from 'next/navigation';
 
 import { CustomerGallery } from 'components/customer-gallery';
-import Footer from 'components/layout/footer';
 import { Gallery } from 'components/product/gallery';
 import { ProductProvider } from 'components/product/product-context';
 import { ProductDescription } from 'components/product/product-description';
@@ -156,7 +155,6 @@ export default async function ProductPage(props: { params: Promise<{ handle: str
           </Suspense>
         </div>
       </div>
-      <Footer />
     </ProductProvider>
   );
 }

@@ -2,7 +2,6 @@ import type { Metadata } from 'next';
 import Image from 'next/image';
 import Link from 'next/link';
 
-import Footer from 'components/layout/footer';
 import { DEFAULT_REVIEWS } from 'lib/default-reviews';
 import { getPage } from 'lib/shopify';
 
@@ -123,8 +122,7 @@ export default async function ReviewsPage() {
   const allReviews = [...customReviews, ...defaultReviewsFormatted];
 
   return (
-    <>
-      <div className="min-h-screen bg-white">
+    <div className="min-h-screen bg-white">
         {/* Header Section */}
         <section className="border-b border-neutral-200 bg-white py-12 md:py-16">
           <div className="mx-auto max-w-screen-2xl px-4 md:px-6">
@@ -202,7 +200,5 @@ export default async function ReviewsPage() {
           </div>
         </section>
       </div>
-      <Footer />
-    </>
   );
 }

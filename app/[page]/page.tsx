@@ -6,7 +6,6 @@ import { DualHeroSection } from 'components/dual-hero-section';
 import { ThreeItemGrid } from 'components/grid/three-items';
 import { HeroSection } from 'components/hero-section';
 import CollectionProducts from 'components/layout/collection-products';
-import Footer from 'components/layout/footer';
 import TagFilters from 'components/layout/search/tag-filters';
 import PromoBanner from 'components/promo-banner';
 import Prose from 'components/prose';
@@ -242,8 +241,6 @@ export default async function Page(props: {
             textColor="white"
           />
         )}
-
-        <Footer />
       </>
     );
   }

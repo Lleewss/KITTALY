@@ -1,7 +1,5 @@
 import type { Metadata } from 'next';
 
-import Footer from 'components/layout/footer';
-
 export const metadata: Metadata = {
   title: 'Size Guide - KITTALY',
   description: 'Find your perfect fit with our comprehensive size guide. Detailed measurements for all KITTALY products.',
@@ -9,8 +7,7 @@ export const metadata: Metadata = {
 
 export default function SizeGuidePage() {
   return (
-    <>
-      <div className="min-h-screen bg-white">
+    <div className="min-h-screen bg-white">
         {/* Header */}
         <section className="border-b border-neutral-200 bg-white py-12 md:py-16">
           <div className="mx-auto max-w-screen-xl px-4 md:px-6">
@@ -243,7 +240,5 @@ export default function SizeGuidePage() {
           </section>
         </div>
       </div>
-      <Footer />
-    </>
   );
 }

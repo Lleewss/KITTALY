@@ -1,5 +1,4 @@
-import Footer from 'components/layout/footer';
-import type { Metadata } from 'next';
+import { Metadata } from 'next';
 
 export const metadata: Metadata = {
   title: 'Delivery Information - KITTALY',
@@ -8,8 +7,7 @@ export const metadata: Metadata = {
 
 export default function DeliveryPage() {
   return (
-    <>
-      <div className="min-h-screen bg-white">
+    <div className="min-h-screen bg-white">
         {/* Header */}
         <section className="border-b border-neutral-200 bg-white py-12 md:py-16">
           <div className="mx-auto max-w-screen-xl px-4 md:px-6">
@@ -223,7 +221,5 @@ export default function DeliveryPage() {
           </section>
         </div>
       </div>
-      <Footer />
-    </>
   );
 }

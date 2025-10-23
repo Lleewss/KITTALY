@@ -1,4 +1,3 @@
-import Footer from 'components/layout/footer';
 import { Metadata } from 'next';
 
 export const metadata: Metadata = {
@@ -8,7 +7,6 @@ export const metadata: Metadata = {
 
 export default function AboutPage() {
   return (
-    <>
       <div className="min-h-screen bg-white">
         {/* Hero Section */}
         <section className="relative h-[50vh] min-h-[400px] bg-neutral-900">
@@ -185,7 +183,5 @@ export default function AboutPage() {
           </div>
         </section>
       </div>
-      <Footer />
-    </>
   );
 }

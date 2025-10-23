@@ -3,7 +3,6 @@ import { CustomerGallery } from 'components/customer-gallery';
 import { DualHeroSection } from 'components/dual-hero-section';
 import { ThreeItemGrid } from 'components/grid/three-items';
 import { HeroSection } from 'components/hero-section';
-import Footer from 'components/layout/footer';
 import PromoBanner from 'components/promo-banner';
 import { DEFAULT_REVIEWS } from 'lib/default-reviews';
 import { getMenu } from 'lib/shopify';
@@ -101,8 +100,6 @@ export default async function HomePage() {
         textPosition="left"
         textColor="white"
       />
-
-      <Footer />
     </>
   );
 }

@@ -1,4 +1,3 @@
-import Footer from 'components/layout/footer';
 import { Metadata } from 'next';
 
 export const metadata: Metadata = {
@@ -47,8 +46,7 @@ export default function CareersPage() {
   ];
 
   return (
-    <>
-      <div className="min-h-screen bg-white">
+    <div className="min-h-screen bg-white">
         {/* Header */}
         <section className="border-b border-neutral-200 bg-white py-12 md:py-16">
           <div className="mx-auto max-w-screen-xl px-4 md:px-6">
@@ -266,7 +264,5 @@ export default function CareersPage() {
           </div>
         </section>
       </div>
-      <Footer />
-    </>
   );
 }

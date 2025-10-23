@@ -1,4 +1,3 @@
-import Footer from 'components/layout/footer';
 import { getBlog, getCollections, getPages, getProducts } from 'lib/shopify';
 import { Metadata } from 'next';
 import Link from 'next/link';
@@ -68,8 +67,7 @@ export default async function SitemapPage() {
   ];
 
   return (
-    <>
-      <div className="min-h-screen bg-white">
+    <div className="min-h-screen bg-white">
         {/* Header */}
         <div className="border-b border-neutral-200 bg-white py-16 md:py-20">
           <div className="mx-auto max-w-screen-xl px-4 md:px-6">
@@ -190,7 +188,5 @@ export default async function SitemapPage() {
           </div>
         </div>
       </div>
-      <Footer />
-    </>
   );
 }

@@ -1,4 +1,5 @@
 import { CartProvider } from 'components/cart/cart-context';
+import Footer from 'components/layout/footer';
 import { Navbar } from 'components/layout/navbar';
 import { getCart } from 'lib/shopify';
 import { baseUrl } from 'lib/utils';
@@ -46,6 +47,7 @@ export default async function RootLayout({
             {children}
             <Toaster closeButton />
           </main>
+          <Footer />
         </CartProvider>
       </body>
     </html>
