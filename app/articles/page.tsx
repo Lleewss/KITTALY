@@ -1,4 +1,4 @@
-import { getBlog } from 'lib/shopify';
+import { getAllBlogs } from 'lib/blog';
 import { Metadata } from 'next';
 import Image from 'next/image';
 import Link from 'next/link';
@@ -9,8 +9,22 @@ export const metadata: Metadata = {
     'Read the latest news, style guides, and stories from FLOELI. Discover fashion trends, sustainability insights, and more.'
 };
 
-export default async function ArticlesPage() {
-  const articles = await getBlog('news');
+export default async function ArticlesPage({
+  searchParams
+}: {
+  searchParams: Promise<{ filter?: string; sort?: string }>;
+}) {
+  // Await searchParams for Next.js 15
+  const params = await searchParams;
+  
+  // Get all articles (Shopify + Static merged automatically)
+  const articles = await getAllBlogs({
+    includeStatic: true,
+    sortBy: params.sort === 'date' ? 'date' : 'priority',
+    filterBy: params.filter ? {
+      seasonality: params.filter
+    } : undefined
+  });
 
   // Featured article (most recent)
   const featuredArticle = articles[0];
@@ -25,8 +39,33 @@ export default async function ArticlesPage() {
               Articles
             </h1>
             <p className="mt-3 text-base text-neutral-600">
-              Latest news, style guides, and stories from FLOELI
+              Timeless family fashion insights, styling guides, and inspiration.
             </p>
+            
+            {/* Filters */}
+            <div className="mt-6 flex flex-wrap gap-3">
+              <FilterButton href="/articles" active={!params.filter}>
+                All
+              </FilterButton>
+              <FilterButton 
+                href="/articles?filter=Christmas" 
+                active={params.filter === 'Christmas'}
+              >
+                Christmas
+              </FilterButton>
+              <FilterButton 
+                href="/articles?filter=Easter" 
+                active={params.filter === 'Easter'}
+              >
+                Easter
+              </FilterButton>
+              <FilterButton 
+                href="/articles?filter=Halloween" 
+                active={params.filter === 'Halloween'}
+              >
+                Halloween
+              </FilterButton>
+            </div>
           </div>
         </section>
 
@@ -271,5 +310,28 @@ export default async function ArticlesPage() {
           )}
         </div>
       </div>
+  );
+}
+
+function FilterButton({
+  href,
+  active,
+  children
+}: {
+  href: string;
+  active: boolean;
+  children: React.ReactNode;
+}) {
+  return (
+    <Link
+      href={href}
+      className={`border px-4 py-2 text-xs font-medium uppercase tracking-wider transition-colors ${
+        active
+          ? 'border-black bg-black text-white'
+          : 'border-neutral-300 bg-white text-neutral-700 hover:border-neutral-400'
+      }`}
+    >
+      {children}
+    </Link>
   );
 }

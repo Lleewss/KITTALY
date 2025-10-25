@@ -1,4 +1,5 @@
-import { getArticle, getBlog } from 'lib/shopify';
+import { getAllBlogs, getBlogByHandle } from 'lib/blog';
+import { extractFAQSchema } from 'lib/blog/extract-faqs';
 import { Metadata } from 'next';
 import Image from 'next/image';
 import Link from 'next/link';
@@ -13,7 +14,8 @@ type Props = {
 
 export async function generateMetadata({ params }: Props): Promise<Metadata> {
   const { handle } = await params;
-  const article = await getArticle('news', handle);
+  // Check BOTH Shopify and static blogs
+  const article = await getBlogByHandle(handle);
 
   if (!article) {
     return {
@@ -42,20 +44,116 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
 
 export default async function ArticlePage({ params }: Props) {
   const { handle } = await params;
-  const article = await getArticle('news', handle);
+  // Check BOTH Shopify and static blogs
+  const article = await getBlogByHandle(handle);
 
   if (!article) {
     notFound();
   }
 
-  // Get related articles
-  const allArticles = await getBlog('news');
+  // Get related articles (from both sources)
+  const allArticles = await getAllBlogs({ includeStatic: true });
   const relatedArticles = allArticles
     .filter((a) => a.handle !== article.handle)
     .slice(0, 3);
 
+  // Generate structured data schemas for SEO
+  const baseUrl = 'https://floeli.com';
+  
+  // BlogPosting Schema
+  const blogPostingSchema = {
+    '@context': 'https://schema.org',
+    '@type': 'BlogPosting',
+    headline: article.title,
+    image: article.image ? article.image.url : `${baseUrl}/opengraph-image.jpg`,
+    datePublished: article.publishedAt,
+    dateModified: article.publishedAt,
+    author: {
+      '@type': 'Person',
+      name: article.author?.name || 'FLOELI Team',
+      url: baseUrl
+    },
+    publisher: {
+      '@type': 'Organization',
+      name: 'FLOELI',
+      url: baseUrl,
+      logo: {
+        '@type': 'ImageObject',
+        url: `${baseUrl}/logo.png`
+      }
+    },
+    description: article.excerpt || article.seo?.description || article.title,
+    mainEntityOfPage: {
+      '@type': 'WebPage',
+      '@id': `${baseUrl}/articles/${article.handle}`
+    }
+  };
+
+  // BreadcrumbList Schema
+  const breadcrumbSchema = {
+    '@context': 'https://schema.org',
+    '@type': 'BreadcrumbList',
+    itemListElement: [
+      {
+        '@type': 'ListItem',
+        position: 1,
+        name: 'Home',
+        item: baseUrl
+      },
+      {
+        '@type': 'ListItem',
+        position: 2,
+        name: 'Articles',
+        item: `${baseUrl}/articles`
+      },
+      {
+        '@type': 'ListItem',
+        position: 3,
+        name: article.title,
+        item: `${baseUrl}/articles/${article.handle}`
+      }
+    ]
+  };
+
+  // Organization Schema
+  const organizationSchema = {
+    '@context': 'https://schema.org',
+    '@type': 'Organization',
+    name: 'FLOELI',
+    url: baseUrl,
+    logo: `${baseUrl}/logo.png`,
+    description: 'Premium family matching outfits designed in Spain with 13 years of refined craftsmanship',
+    sameAs: [
+      'https://instagram.com/floeli',
+      'https://pinterest.com/floeli'
+    ]
+  };
+
+  // FAQ Schema (if FAQs exist in content)
+  const faqSchema = extractFAQSchema(article.contentHtml || article.content);
+
   return (
     <div className="min-h-screen bg-white">
+      {/* Structured Data - SEO Schemas */}
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(blogPostingSchema) }}
+      />
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumbSchema) }}
+      />
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(organizationSchema) }}
+      />
+      {faqSchema && (
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{ __html: JSON.stringify(faqSchema) }}
+        />
+      )}
+
         {/* Breadcrumb */}
         <nav className="border-b border-neutral-200 bg-white py-4">
           <div className="mx-auto max-w-screen-xl px-4 md:px-6">
@@ -152,8 +250,36 @@ export default async function ArticlePage({ params }: Props) {
           <div className="mx-auto max-w-4xl px-4 md:px-6">
             <div
               className="prose prose-neutral max-w-none prose-headings:font-bold prose-headings:uppercase prose-headings:tracking-wider prose-h2:text-2xl prose-h3:text-xl prose-p:text-neutral-700 prose-a:text-black prose-a:underline hover:prose-a:text-neutral-600 prose-strong:text-black prose-img:rounded-none"
-              dangerouslySetInnerHTML={{ __html: article.contentHtml }}
+              dangerouslySetInnerHTML={{ __html: article.contentHtml || article.content }}
             />
+
+            {/* CTA Section for Static Blogs */}
+            {article.source === 'static' && article.cta_link && article.cta_button_text && (
+              <div className="my-16 border-2 border-[#1D2022] bg-white px-8 py-12 text-center md:px-12">
+                {article.primary_cta && (
+                  <h3 className="mb-4 text-2xl font-bold uppercase tracking-widest text-[#1D2022]">
+                    {article.primary_cta}
+                  </h3>
+                )}
+                <p className="mx-auto mb-8 max-w-2xl text-neutral-600">
+                  Designed in Spain with 13 years of refined craftsmanship. Timeless pieces that celebrate
+                  real families and real moments.
+                </p>
+                <div className="mb-8 flex flex-wrap justify-center gap-6 text-xs uppercase tracking-wider text-neutral-600">
+                  <span>Premium Organic Fabrics</span>
+                  <span>•</span>
+                  <span>Sizes for Everyone</span>
+                  <span>•</span>
+                  <span>Free Shipping €50+</span>
+                </div>
+                <Link
+                  href={article.cta_link}
+                  className="inline-block border-2 border-[#1D2022] bg-[#1D2022] px-10 py-3.5 text-xs font-medium uppercase tracking-widest text-white transition-all duration-200 hover:bg-white hover:text-[#1D2022]"
+                >
+                  {article.cta_button_text}
+                </Link>
+              </div>
+            )}
           </div>
         </article>
 
