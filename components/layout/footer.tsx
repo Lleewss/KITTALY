@@ -1,7 +1,7 @@
 import Link from 'next/link';
 
 import FooterMenu from 'components/layout/footer-menu';
-import LogoSquare from 'components/logo-square';
+import LogoIcon from 'components/icons/logo';
 import Newsletter from 'components/newsletter';
 import { getMenu } from 'lib/shopify';
 import { Suspense } from 'react';
@@ -165,7 +165,9 @@ export default async function Footer() {
             {/* Brand Column */}
             <div className="lg:col-span-2">
               <Link className="flex items-center gap-2 text-black" href="/">
-                <LogoSquare size="sm" />
+                <div className="flex flex-none items-center justify-center border border-neutral-200 bg-white h-[30px] w-[30px] rounded-lg">
+                  <LogoIcon className="h-[14px] w-[14px]" />
+                </div>
                 <span className="text-xl font-bold uppercase tracking-wider">{SITE_NAME}</span>
               </Link>
               <p className="mt-4 text-sm text-neutral-600">

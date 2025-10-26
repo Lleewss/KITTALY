@@ -1,6 +1,6 @@
 import CartModal from 'components/cart/modal';
 import { AnnouncementBanner } from 'components/layout/announcement-banner';
-import LogoSquare from 'components/logo-square';
+import LogoFull from 'components/icons/logo-full';
 import { getMenu } from 'lib/shopify';
 import Link from 'next/link';
 import { Suspense } from 'react';
@@ -38,12 +38,9 @@ export async function Navbar() {
               <Link
                 href="/"
                 prefetch={true}
-                className="flex items-center gap-2"
+                className="flex items-center"
               >
-                <LogoSquare />
-                <span className="text-xl font-bold uppercase tracking-wider">
-                  {SITE_NAME}
-                </span>
+                <LogoFull className="h-6 md:h-8" />
               </Link>
             </div>
 
